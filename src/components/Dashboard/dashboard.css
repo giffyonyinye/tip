@@ -5,6 +5,13 @@
     background-repeat: no-repeat;
 }
 
+.send-money-bg {
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/send-money-bg.JPEG');
+  background-size: cover;
+  height:100vh;
+  background-repeat: no-repeat;
+}
+
 .balance-bg {
     background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)), url('../../assets/balance-bg.svg');
     background-size: cover;

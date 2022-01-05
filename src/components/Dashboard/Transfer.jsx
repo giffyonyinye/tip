@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { transfer, userInfo } from '../Redux/Action/Action';
 import Modal from '../Layout/Modal';
+import logo from '../../assets/logo1.png';
 
 
 const Transfer = () => {
@@ -49,42 +50,54 @@ const Transfer = () => {
     }
     return (
         <>
-            <div className="dashboard ">
-                <div className="pt-4">
-                    <div className=" p-1" style={{background:"#f1d3db"}}>
-                        <div className="d-flex" style={{color:"#AB2656"}}>
-                            <i className="fa fa-arrow-left mt-2  ms-4"></i>
-                            <p className="mx-5 h5">Send Money</p>
+            <div className="send-money-bg ">
+                <div className="d-flex justify-content-center">
+                    <div>
+                        <img className="mx-5 mt-3" style={{width:"10rem", height:"3rem"}} src={logo} alt="logo" />
+                        <div className="pt-4">
+                            <div>
+                                <div className="text-white">
+                                    <p className="mx-5 h5">SEND MONEY</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
                 
+                
                 <div className="container">
-                    <div className="w-50">
+                    <div className="w-75 m-auto ">
                         <form onSubmit={transferMoney}>
-                            <div className="bg-white w-75 p-3 rounded mt-5">
+                            <div className=" p-3 rounded mt-3">
                                 <div>
-                                    <select name="bank" id="bank" className="w-100 p-2" onChange={handleChange}>
+                                    <p className="m-0 text-center"  style={{color:"#ab2656", fontWeight:"bold"}}>Select Bank</p>
+                                    <select name="bank" id="bank" className="text-secondary w-100 p-2" onChange={handleChange}>
+                                        <option value="select">Please select an option</option>
                                         {banks.map((bank, index)=> (
                                             <option key={index} value="bank">{bank}</option>
                                         ))}
                                     </select>
                                 </div>
-                                <div>
-                                    <input onChange={handleChange} type="text" name="toAccount" id="toAccount" placeholder="Enter Account Number" className="p-2 mt-3 w-100 rounded " style={{border:"1px solid grey"}}/>
-                                    <p className="text-black m-0">Account Name: Horace Akpan</p>
+                                <div className="mt-2">
+                                <p className="m-0 text-center"  style={{color:"#ab2656", fontWeight:"bold"}}>Account Number</p>
+                                    <input onChange={handleChange} type="text" name="toAccount" id="toAccount" placeholder="Enter Account Number" className="p-2 w-100 rounded " style={{border:"1px solid grey"}}/>
+                                    {/* <p className="text-black m-0" style={{fontSize:".8rem", color:"#ab2656"}}>Account Name: Horace Akpan</p> */}
                                 </div>
-                                <div>
-                                    <input onChange={handleChange} type="text" name="amount" id="amount" placeholder="Enter Amount" className="p-2 mt-3 w-100 rounded" style={{border:"1px solid grey"}}/>
+                                <div className="mt-2">
+                                    <p className="m-0 text-center"  style={{color:"#ab2656", fontWeight:"bold"}}>Amount</p>
+                                    <input onChange={handleChange} type="text" name="amount" id="amount" placeholder="Enter Amount" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                 </div>
-                                <div>
-                                    <input onChange={handleChange} type="text" name="desc" id="desc" placeholder="Description" className="p-2 mt-3 w-100 rounded" style={{border:"1px solid grey"}}/>
+                                <div className="mt-2">
+                                    <p className="m-0 text-center"  style={{color:"#ab2656", fontWeight:"bold"}}>Description</p>
+                                    <input onChange={handleChange} type="text" name="desc" id="desc" placeholder="Description" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                 </div>
-                                <div>
-                                    <input onChange={handleChange} type="password" name="pin" id="pin" placeholder="Pin" className="p-2 mt-3 w-100 rounded" style={{border:"1px solid grey"}}/>
+                                <div className="mt-2">
+                                    <p className="m-0 text-center"  style={{color:"#ab2656", fontWeight:"bold"}}>Pin</p>
+                                    <input onChange={handleChange} type="password" name="pin" id="pin" placeholder="Pin" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                 </div>
-                                <div>
-                                    <button className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
+                                <div className="text-center">
+                                    <button className="p-2 mt-3 w-50 rounded text-white border-0" style={{border:"1px solid grey", background:"#47133B"}}>Proceed</button>
                                 </div>
 
                             </div>

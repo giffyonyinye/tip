@@ -12,10 +12,10 @@ const UserBalance = () => {
                 <div className="d-flex justify-content-between">
                     <div>
                         <p className="m-0">Current Balance</p>
-                        <p className="h2">₦ {userInfo && userInfo.acctBalance}</p>
+                        <p className="h2">₦ {userInfo && userInfo.acctBalance.toLocaleString()}</p>
                         <div style={{fontSize:".7rem", marginTop:"3rem"}}>
                             <p className="m-0">Account Number</p>
-                            <p className="m-0">{userInfo && userInfo.acctNumber}</p>
+                            <p className="m-0" style={{fontSize:"1.2rem", fontWeight:"bold"}}>{userInfo && userInfo.acctNumber}</p>
                         </div>
                     </div>
                     <div className="d-flex flex-column justify-content-between">

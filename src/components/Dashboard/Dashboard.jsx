@@ -15,29 +15,29 @@ const Dashboard = () => {
                         <div>
                             <UserBalance/>
                         </div>
-                        <div className=" mt-3 " style={{width:"80%", margin:"auto"}}>
-                            <div className="d-flex justify-content-around text-center">
-                                <Link to="/transfer" className="w-75 text-black text-decoration-none bg-white p-3 rounded">
+                        <div className=" mt-3" style={{width:"80%", margin:"auto"}}>
+                            <div className="d-flex justify-content-between text-center">
+                                <Link to="/transfer" className=" text-black text-decoration-none bg-white p-3 rounded" style={{height:"6rem", width:"40%"}}>
                                     <i className="fa fa-money fa-2x" style={{color:"#AB2656"}}></i>
                                     <p className="">Send Money</p>
                                 </Link>
-                                <Link to="/tip-myself" className="w-75 text-black  mx-4 bg-white p-3 rounded text-decoration-none">
+                                <Link to="/tip-myself" className=" text-black bg-white p-3 rounded text-decoration-none" style={{height:"6rem", width:"40%"}}>
                                     <i className="fa fa-hand-grab-o fa-2x" style={{color:"#AB2656"}}></i>
                                     <p>Tip Myself</p>
                                 </Link>
                             </div>
-                            <div className="d-flex justify-content-around mt-3 text-center">
-                                <div className="w-75 bg-white rounded">
+                            <div className="d-flex justify-content-between mt-3 text-center">
+                                <div className=" bg-white rounded" style={{height:"6rem", width:"40%"}}>
                                     <i className="fa fa-money fa-2x p-3" style={{color:"#AB2656"}}></i>
                                     <p>Pay Bills</p>
                                 </div>
-                                <div className="w-75 mx-4 bg-white p-3 rounded">
+                                <div className=" bg-white p-3 rounded" style={{height:"6rem", width:"40%"}}>
                                     <i className="fa fa-bookmark fa-2x" style={{color:"#AB2656"}}></i>
-                                    <p>Data & Mobile Topup</p>
+                                    <p>Transaction History</p>
                                 </div>
                             </div>
 
-                            <div className=" bg-white rounded">
+                            <div className=" bg-white rounded mt-4 text-center" >
                                 <i className="fa fa-bookmark" style={{color:"#AB2656"}}></i>
                                 <p className="m-0">Data & Mobile Topup</p>
                             </div>
