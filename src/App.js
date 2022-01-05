@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route} from "react-router-dom";
+import Dashboard from './components/Dashboard/Dashboard';
+import Transfer from './components/Dashboard/Transfer';
+import LoginAuth from './components/Login/LoginAuth';
+import Tip from './components/Dashboard/Tip';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Routes>
+        <Route exact path = '/' element = {<LoginAuth/>}></Route>
+        <Route exact path = '/dashboard' element = {<Dashboard/>}></Route>
+        <Route exact path = '/transfer' element = {<Transfer/>}></Route>
+        <Route exact path = '/tip-myself' element = {<Tip/>}></Route>
+      </Routes>
+    </>
   );
 }
 

@@ -1,0 +1,6 @@
+.banner {
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)), url('../../assets/TALAT-LOG-IN.svg');
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
