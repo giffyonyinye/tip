@@ -1,0 +1,11 @@
+export const LOGIN_ACTION = "LOGIN_ACTION";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const USER_INFO = "USER_INFO";
+export const LOGOUT_ACTION = "LOGOUT_ACTION";
+export const TRANSFER_ACTION= "TRANSFER_ACTION";
+export const TRANSFER_SUCCESS= "TRANSFER_SUCCESS";
+export const TRANSFER_FAIL= "TRANSFER_FAIL";
+export const TIP_ACTION = "TIP_ACTION";
+export const TIP_SUCCESS = "TIP_SUCCESS";
+export const TIP_FAILED = "TIP_FAILED"

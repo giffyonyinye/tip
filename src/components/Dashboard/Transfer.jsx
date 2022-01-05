@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { logInAction, userInfo } from '../Redux/Action/Action';
+import { transfer, userInfo } from '../Redux/Action/Action';
 import Modal from '../Layout/Modal';
 
 
 const Transfer = () => {
-    const contact = useSelector(state => state.LoginReducer.userInfo[0]);
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     const [form, setForm] = useState({
         toAccount: "",
         amount: ""
@@ -35,41 +36,14 @@ const Transfer = () => {
     ]
     const transferMoney = (e) => {
         e.preventDefault();
-        console.log(contact.acctNumber)
         // if (!form.email) {
         //     setEmailValidity(true);
         // } else if (!form.password) {
         //     setPasswordValidity(true);
         // } else {
-        //     setIsLoading(true)
-            axios({
-                method: "POST",
-                url: `https://localhost:5001/api/Transactions/SendMoney?FromAccount=${contact.acctNumber}`,
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                data: {
-                    toAccount: form.toAccount,
-                    amount: form.amount
-                }
-            })
-            .then((res) => {
-                // let userData = []
-                // userData = res.data
-                // props.userInfo(userData);
-                // setIsLoading(false);
-                console.log(res)
-                let details = res.data.
-                navigate("/dashboard");
-                dispatch(userInfo(contact));
-            })
-            .catch((err) => {
-                
-                    // setIsUserAuth(true);
-                    // setIsLoading(false);
-                    console.log("error")
-                
-            })
+            // setIsLoading(true)
+            dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount))
+            navigate("/dashboard")
             
         // }
     }

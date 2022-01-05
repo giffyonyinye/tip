@@ -4,23 +4,18 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const UserBalance = () => {
-    const contact = useSelector(state => state.LoginReducer.userInfo[0]);
-    let data = JSON.parse(localStorage.getItem("userData"));
-
-    useEffect(() => {
-        data = JSON.parse(localStorage.getItem("userData"));
-        
-      });
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     return (
         <div>
-            <div className="balance-bg w-75 text-white mt-4 p-2 rounded">
+            <div className="balance-bg  text-white p-2 rounded" style={{marginTop:"4rem"}}>
                 <div className="d-flex justify-content-between">
                     <div>
                         <p className="m-0">Current Balance</p>
-                        <p className="h2">₦ {contact.acctBalance.toLocaleString()}</p>
+                        <p className="h2">₦ {userInfo && userInfo.acctBalance}</p>
                         <div style={{fontSize:".7rem", marginTop:"3rem"}}>
                             <p className="m-0">Account Number</p>
-                            <p className="m-0">{contact.acctNumber}</p>
+                            <p className="m-0">{userInfo && userInfo.acctNumber}</p>
                         </div>
                     </div>
                     <div className="d-flex flex-column justify-content-between">

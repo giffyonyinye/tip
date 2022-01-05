@@ -1,7 +1,58 @@
 import React from 'react';
 import "./dashboard.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
-export default function Tip() {
+const TipWallet = () => {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    const [form, setForm] = useState({
+        tipStatus: "",
+        tipPercentage: ""
+    });
+    const [status, setStatus] = useState(false)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // state = {
+    //     status: false,
+    //     switchButton: "Off"
+    // }
+
+   const handleClick = () => {
+        setStatus({
+            status: !status,
+            switchButton: !status ? 'ON' : 'OFF'
+        })
+    }
+    const handleChange = (e) => {
+        // if(form.toAmount) {
+        //     setEmailValidity(false);
+        // }
+        // if(form.amount) {
+        //     setPasswordValidity(false);
+        // }
+        setStatus({
+            status: !status,
+            switchButton: !status ? true : false
+        })
+        console.log(setForm({...form, [e.target.name] : e.target.value}));
+        return setForm({...form, [e.target.name] : e.target.value});
+
+    };
+    const tip = (e) => {
+        e.preventDefault();
+        // if (!form.email) {
+        //     setEmailValidity(true);
+        // } else if (!form.password) {
+        //     setPasswordValidity(true);
+        // } else {
+            // setIsLoading(true)
+            dispatch(tip(userInfo.acctNumber, form.tipStatus, form.tipPercentage))
+            navigate("/dashboard")
+            
+        // }
+    }
 
     const tipPercentage = [
         "5",
@@ -46,7 +97,8 @@ export default function Tip() {
                                     Tip Status
                                 </div>
                                 <label class="switch">
-                                    <input type="checkbox"/>
+                                    
+                                    <input onChange={handleChange} name={status} type="checkbox"/>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -69,7 +121,7 @@ export default function Tip() {
                                 </select>
                             </div>
                             <div>
-                                <button className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
+                                <button onClick={tip} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
                             </div>
 
                         </div>
@@ -81,3 +133,5 @@ export default function Tip() {
         </>
     )
 }
+
+export default TipWallet;

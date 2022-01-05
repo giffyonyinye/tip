@@ -1,20 +1,23 @@
 import React from 'react';
-import { useState } from 'react';
-import '../Layout/banner.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { userInfo } from '../Redux/Action/Action';
-import { connect } from 'react-redux';
+import { login } from '../Redux/Action/Action';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import '../Layout/banner.css';;
+
 
 // import { useSelector } from 'react-redux';
 // import { logInAction, logInFailed, logInSuccess } from '../Redux/Action/Action';
 
-const LoginAuth = (props) => {
+const LoginAuth = () => {
+    const dispatch = useDispatch()
+
     const [passwordShown, setPasswordShown] = useState(false);
     const [emailValidity, setEmailValidity] = useState(false);
     const [passwordValidity, setPasswordValidity] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isUserAuth, setIsUserAuth] = useState(false);
+    const [userData, setUserData] = useState([]);
     const [form, setForm] = useState({
         email: "",
         password: ""
@@ -44,32 +47,9 @@ const LoginAuth = (props) => {
             setPasswordValidity(true);
         } else {
             setIsLoading(true)
-            axios({
-                method: "POST",
-                url: "https://localhost:5001/api/User/login",
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                data: {
-                    email: form.email
-                }
-            })
-            .then((res) => {
-                let userData = []
-                userData = res.data
-                localStorage.setItem('userData', JSON.stringify(userData))
-                props.userInfo(userData);
-                setIsLoading(false);
-                navigate("/dashboard");
-
-            })
-            .catch((err) => {
-                if(err) {
-                    setIsUserAuth(true);
-                    setIsLoading(false);
-                }
-            })
-            
+            dispatch(login(form.email, form.password))
+            setIsLoading(false);
+            navigate("/dashboard");       
         }
     }
     // const selector = useSelector(state => state.LoginReducer.userInfo)
@@ -137,16 +117,16 @@ const LoginAuth = (props) => {
     )
 }
 
-const mapStateToProps = state => ({
-    info: state.LoginReducer.userInfo        
-})
+// const mapStateToProps = state => ({
+//     info: state.LoginReducer.userInfo        
+// })
 
-const mapDispatchToProps = (dispatch) => ({
-    // logInAction: (payload) => dispatch(logInAction(payload)),
-    userInfo: (payload) => dispatch(userInfo(payload))
-})
+// const mapDispatchToProps = (dispatch) => ({
+//     // logInAction: (payload) => dispatch(logInAction(payload)),
+//     userInfo: (payload) => dispatch(userInfo(payload))
+// })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginAuth);
-// export default LoginAuth;
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginAuth);
+export default LoginAuth;
 

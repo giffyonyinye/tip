@@ -1,21 +1,22 @@
-// import { createStore, applyMiddleware, compose } from "redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 // import createSagaMiddleware from 'redux-saga';
 import {reducers}  from '../Reducer/RootReducer';
 // import {rootSaga} from "../Saga/RootSaga";
 
-const Store = createStore(reducers)  
+const userInfoFromStorage = localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) : null
 
-    // const sagaMiddleware = createSagaMiddleware();
-    // const allMiddleware = applyMiddleware(sagaMiddleware);
-    // const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const initialState = {
+    userLogin: { userInfo: userInfoFromStorage },
+}
 
-    // const store = createStore(
-    //     reducers,
-    //     state,
-    //     composeEnhancer(allMiddleware)
-    // );
-    // sagaMiddleware.run(rootSaga);
-    // return store
+const middleware = [thunk]
+
+const Store = createStore(reducers, initialState,
+    composeWithDevTools(applyMiddleware(...middleware)))
 
 export default Store;
+
+
