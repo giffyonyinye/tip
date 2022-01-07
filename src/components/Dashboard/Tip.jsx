@@ -1,6 +1,7 @@
 import React from 'react';
 import "./dashboard.css";
 import { useSelector, useDispatch } from 'react-redux';
+import { tip, toggleTip } from '../Redux/Action/Action';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 
@@ -8,10 +9,13 @@ const TipWallet = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const [form, setForm] = useState({
-        tipStatus: "",
-        tipPercentage: ""
+        tipPercent: 0,
+        whenTipped: ""
     });
-    const [status, setStatus] = useState(false)
+    const [status, setStatus] = useState(Boolean);
+    const [statusDisplay, setStatusDisplay] = useState("");
+    const [getStatus, setGetStatus] = useState(Boolean);
+    const [tipBalance, setTipBalance] = useState(0);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // state = {
@@ -20,10 +24,17 @@ const TipWallet = () => {
     // }
 
    const handleClick = () => {
-        setStatus({
-            status: !status,
-            switchButton: !status ? 'ON' : 'OFF'
-        })
+        setStatus(!status ? true : false)
+        if(status === true) {
+            setGetStatus(true)
+            setStatusDisplay("Deactivated")
+        } else {
+            setStatusDisplay("Activated")
+            setGetStatus(false)
+
+        }
+        dispatch(toggleTip(userInfo.acctNumber, getStatus))
+        console.log(getStatus)
     }
     const handleChange = (e) => {
         // if(form.toAmount) {
@@ -31,34 +42,35 @@ const TipWallet = () => {
         // }
         // if(form.amount) {
         //     setPasswordValidity(false);
-        // }
-        setStatus({
-            status: !status,
-            switchButton: !status ? true : false
-        })
+        // }   
         console.log(setForm({...form, [e.target.name] : e.target.value}));
+        console.log(form)
         return setForm({...form, [e.target.name] : e.target.value});
 
     };
-    const tip = (e) => {
-        e.preventDefault();
+    const tipped = () => {
+        // e.preventDefault();
         // if (!form.email) {
         //     setEmailValidity(true);
         // } else if (!form.password) {
         //     setPasswordValidity(true);
         // } else {
             // setIsLoading(true)
-            dispatch(tip(userInfo.acctNumber, form.tipStatus, form.tipPercentage))
-            navigate("/dashboard")
+            console.log(getStatus)
+
+            dispatch(tip(userInfo.acctNumber, status, form.tipPercent))
+            // navigate("/dashboard")
+            console.log(getStatus)
+            console.log(form)
             
         // }
     }
 
     const tipPercentage = [
-        "5",
-        "10",
-        "15",
-        "20"
+        parseInt(5),
+        parseInt(10),
+        parseInt(15),
+        parseInt(20)
     ]
     const whenTipped = [
         "On every debit",
@@ -84,7 +96,7 @@ const TipWallet = () => {
                         <div className="balance-bg w-75 text-white mt-4 p-3 rounded">
                             <div className="text-center">
                                 <p className="m-0">Tip Balance</p>
-                                <p className="h1">₦ 20,000</p>
+                                <p className="h1">₦ {tipBalance}</p>
                             </div>
                             <div style={{textAlign:"right"}}>
                                 <button className="text-white w-25" style={{border:"1px solid grey", background:"transparent", fontSize:".8rem"}}>Tip History</button>
@@ -92,37 +104,48 @@ const TipWallet = () => {
                         </div>  
 
                         <div className="bg-white w-75 p-3 rounded mt-2">
-                            <div className="d-flex justify-content-between p-1 mt-3 w-100 rounded border border-dark">
-                                <div style={{color:"#ab2656", fontWeight:"bold"}}>
-                                    Tip Status
+                            <div className="p-1 mt-3 w-100 rounded border border-dark">
+                                <div className="d-flex justify-content-between ">
+                                    <div style={{color:"#ab2656", fontWeight:"bold"}}>
+                                        Tip Status
+                                    </div>
+                                    <label className="switch">
+                                        <div>
+                                            <input onChange={handleClick} value={getStatus} type="checkbox"/>
+                                            <span className="slider round"></span>
+                                        </div> 
+                                    </label>
                                 </div>
-                                <label class="switch">
-                                    
-                                    <input onChange={handleChange} name={status} type="checkbox"/>
-                                    <span class="slider round"></span>
-                                </label>
+                                <div style={{textAlign:"right"}}>status: {statusDisplay}</div>
                             </div>
                             
                             <div>
-                                <select name="tip-percent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}}>
-                                    <option value="tip-percentage" >Tip Percentage</option>
-                                    {tipPercentage.map(p => (
-                                        <option value={p}>{p}</option>
-                                    ))}
-                                </select>
+                                {status === true && (
+                                    <div>
+                                        <div>
+                                            <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
+                                                <option value="tip-percentage" >Tip Percentage</option>
+                                                {tipPercentage.map(p => (
+                                                    <option value={p}>{p}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                            
+                                        <div>
+                                            <select name="whenTipped" id="when-tipped" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange}>
+                                                <option value="when-tipped" >When Should I be tipped</option>
+                                                {whenTipped.map(tip => (
+                                                    <option value={tip}>{tip}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <button onClick={tipped} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             
-                            <div>
-                                <select name="when-tipped" id="when-tipped" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}}>
-                                    <option value="when-tipped" >When Should I be tipped</option>
-                                    {whenTipped.map(tip => (
-                                        <option value={tip}>{tip}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <button onClick={tip} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
-                            </div>
 
                         </div>
                     </div>

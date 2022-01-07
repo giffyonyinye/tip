@@ -8,7 +8,7 @@ const UserBalance = () => {
     const { userInfo } = userLogin;
     return (
         <div>
-            <div className="balance-bg  text-white p-2 rounded" style={{marginTop:"4rem"}}>
+            <div className="balance-bg  text-white p-2 rounded" >
                 <div className="d-flex justify-content-between">
                     <div>
                         <p className="m-0">Current Balance</p>

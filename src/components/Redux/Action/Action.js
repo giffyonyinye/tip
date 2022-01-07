@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+    CREATE_ACTION,
+    CREATE_SUCCESS,
+    CREATE_FAILED,
     LOGIN_ACTION,
     TRANSFER_ACTION,
     TRANSFER_SUCCESS,
@@ -9,9 +12,57 @@ import {
     LOGOUT_ACTION,
     TIP_ACTION,
     TIP_SUCCESS,
-    TIP_FAILED
+    TIP_FAILED,
+    TRANSACTION_HISTORY_SUCCESS,
+    TRANSACTION_HISTORY_ACTION,
+    TRANSACTION_HISTORY_FAILED,
+    TIP_TOGGLE_SUCCESS,
+    TIP_TOGGLE_ACTION,
+    TIP_TOGGLE_FAILED
 
 } from '../constants/userConstants'
+const url = "https://tipproj.azurewebsites.net"
+
+export const createAccount = (firstName, lastName, email, password, pin) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type:CREATE_ACTION
+        })
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post(
+            `${url}/api/Users/CreateAccount`,
+            { 
+            'firstName': firstName, 
+            'lastName': lastName, 
+            'email': email, 
+            'password':password, 
+            'transactionPin': pin  
+            },
+            config
+        )
+
+        dispatch({
+            type: CREATE_SUCCESS,
+            payload: data
+        })
+
+        // localStorage.setItem('createAccount', JSON.stringify(data))
+
+    } catch (error) {
+        let err = error.response.data.Message
+        dispatch({
+            type: CREATE_FAILED,
+            payload: err
+        })
+    }
+}
 
 export const login = (email, password) => async (dispatch) => {
 
@@ -27,8 +78,8 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            "https://localhost:5001/api/User/login",
-            { 'email': email  },
+            `${url}/api/Users/login`,
+            { 'email': email, 'password': password },
             config
         )
 
@@ -40,11 +91,10 @@ export const login = (email, password) => async (dispatch) => {
         localStorage.setItem('userInfo', JSON.stringify(data))
 
     } catch (error) {
+       let err = error.response.data.Message
         dispatch({
             type: LOGIN_FAILED,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
+            payload: err
         })
     }
 }
@@ -56,7 +106,7 @@ export const logout = () => (dispatch) => {
 
 }
 
-export const transfer = (acctNumber, receiver, amount) => async (dispatch) => {
+export const transfer = (acctNumber, receiver, amount, pin) => async (dispatch) => {
 
     try {
         dispatch({
@@ -70,8 +120,8 @@ export const transfer = (acctNumber, receiver, amount) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            `https://localhost:5001/api/Transactions/SendMoney?FromAccount=${acctNumber}`,
-            { 'toAccount': receiver, 'amount': amount  },
+            `${url}/api/Transactions/SendMoney?FromAccount=${acctNumber}`,
+            { 'toAccount': receiver, 'amount': amount, 'transactionPin' : pin  },
             config
         )
 
@@ -85,6 +135,78 @@ export const transfer = (acctNumber, receiver, amount) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: TRANSFER_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+
+}
+export const toggleTip = (acctNumber, toggleStatus) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type:TIP_TOGGLE_ACTION
+        })
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post(
+            `https://localhost:5001/api/TipWallet/ToggleTipMyself?acctNum=${acctNumber}`,
+            { 'tipStatus': toggleStatus },
+            config
+        )
+
+        dispatch({
+            type:TIP_TOGGLE_SUCCESS,
+            payload: data
+        })
+
+        // localStorage.setItem('userInfo', JSON.stringify(data))
+
+    } catch (error) {
+        dispatch({
+            type: TIP_TOGGLE_FAILED,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+
+}
+
+export const transaction_History = (acctNumber) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type:TRANSACTION_HISTORY_ACTION
+        })
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.get(
+            `https://localhost:5001/api/Transactions/TransactionHistory?AcctNumber=${acctNumber}`,
+            config
+        )
+            console.log(data)
+        dispatch({
+            type: TRANSACTION_HISTORY_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: TRANSACTION_HISTORY_FAILED,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -106,7 +228,7 @@ export const tip = (acctNumber, tip_status, tip_percentage) => async (dispatch) 
         }
 
         const { data } = await axios.post(
-            `https://localhost:5001/api/TipWallet/ActivateStatus?FromAccount=${acctNumber}`,
+            `https://localhost:5001/api/TipWallet/ActivateStatus?acctNum=${acctNumber}`,
             { 'tipStatus': tip_status, 'tipPercent': tip_percentage  },
             config
         )
@@ -128,48 +250,4 @@ export const tip = (acctNumber, tip_status, tip_percentage) => async (dispatch) 
     }
 }
 
-    //         axios({
-    //             method: "POST",
-    //             url: `https://localhost:5001/api/Transactions/SendMoney?FromAccount=${contact.acctNumber}`,
-    //             headers: {
-    //                 'Content-type': 'application/json',
-    //             },
-    //             data: {
-    //                 toAccount: form.toAccount,
-    //                 amount: form.amount
-    //             }
-    //         })
-
-// export const logInAction = (payload) => {
-//     return {
-//         type:LOGIN_ACTION,
-//         payload
-//     };
-// }
-// export const logInSuccess = (payload) => {  
-//     return {
-//         type:LOGIN_SUCCESS,
-//         payload
-//     };
-// }
-
-// export const logInFailed = (payload) => {
-//     return {
-//         type:LOGIN_FAILED,
-//         payload
-//     };
-// }
-
-// export const userInfo = (payload) => {
-//     return {
-//         type:USER_INFO,
-//         payload
-//     };
-// }
-
-// export const logoutAction = (payload) => {
-//     return {
-//         type:LOGOUT_ACTION,
-//         payload
-//     };
-// }
+    

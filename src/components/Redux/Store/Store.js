@@ -10,6 +10,10 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ?
 
 const initialState = {
     userLogin: { userInfo: userInfoFromStorage },
+    transaction: {transactionInfo: []},
+    toggleTip: {toggleTip : Boolean},
+    // authenticated: false
+    
 }
 
 const middleware = [thunk]

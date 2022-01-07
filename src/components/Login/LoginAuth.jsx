@@ -2,7 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { login } from '../Redux/Action/Action';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Loader from '../Layout/Loader';
+import Message from '../Layout/Loader';
 import '../Layout/banner.css';;
 
 
@@ -15,7 +18,7 @@ const LoginAuth = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [emailValidity, setEmailValidity] = useState(false);
     const [passwordValidity, setPasswordValidity] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const [isUserAuth, setIsUserAuth] = useState(false);
     const [userData, setUserData] = useState([]);
     const [form, setForm] = useState({
@@ -42,19 +45,19 @@ const LoginAuth = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         if (!form.email) {
-            setEmailValidity(true);
+             setEmailValidity(true);
         } else if (!form.password) {
-            setPasswordValidity(true);
+            return setPasswordValidity(true);
         } else {
-            setIsLoading(true)
-            dispatch(login(form.email, form.password))
-            setIsLoading(false);
-            navigate("/dashboard");       
+            dispatch(login(form.email, form.password));
+            // navigate("/dashboard")
         }
+        
+        
     }
 
-    // const selector = useSelector(state => state.LoginReducer.userInfo)
-    // console.log(selector)
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo, error, loading } = userLogin;
     return (
         <>
             <div className="banner text-white"> 
@@ -91,9 +94,10 @@ const LoginAuth = () => {
                                         {passwordValidity &&
                                             <p className="text-danger" style={{fontSize:".8rem"}}>please enter your password</p>
                                         }
-                                         {isUserAuth &&
-                                            <p className="text-danger" style={{fontSize:".8rem"}}>Incorrect Email or Password</p>
-                                        }
+                                        {error && (
+                                            <div className="text-danger">{error}</div>
+                                        )}
+                                        {/* {error && <Message variant='danger'>{error}</Message>} */}
                                         
                                     </div>
                                     <div>
@@ -103,13 +107,18 @@ const LoginAuth = () => {
                                     <div className="mt-5">
                                         <button 
                                         className="text-white rounded w-100 p-2 border-0 outline-none" style={{backgroundColor:"#AB2656"}}>Login
-                                        {isLoading &&
+                                        {/* {isLoading &&
                                         <i className="fa fa-spin fa-spinner"></i>
-                                        }
+                                        } */}
                                         </button>
+                                        {loading && <Loader />}
                                     </div>
                                 </form>
                             </div>
+                        </div>
+
+                        <div>
+                            <Link to="/create-account">Sign Up</Link>
                         </div>
                     </div>
                </div>

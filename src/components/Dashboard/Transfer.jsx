@@ -64,8 +64,7 @@ const Transfer = () => {
                     </div>
                     
                 </div>
-                
-                
+                   
                 <div className="container">
                     <div className="w-75 m-auto ">
                         <form onSubmit={transferMoney}>
