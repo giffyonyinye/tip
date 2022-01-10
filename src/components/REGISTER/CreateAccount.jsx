@@ -1,10 +1,10 @@
 import React from 'react';
 import '../Dashboard/dashboard.css';
 import logo from '../../assets/logo1.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAccount } from '../Redux/Action/Action';
-import { useNavigate } from 'react-router';
 
 export default function CreateAccount() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -24,12 +24,22 @@ export default function CreateAccount() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    useEffect(() => {
+        console.log(userInfo)
+        if(userInfo) {
+           navigate("/dashboard");
+        }
+    }, [userInfo])
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
     const togglePin = () => {
         setPinShown(!pinShown);
     };
+    const createAcct = useSelector((state) => state.userLogin);
+    const {  error } = createAcct
     const handleChange = (e) => {
         if (form.firstName) {
             setIsFirstName("")
@@ -62,13 +72,9 @@ export default function CreateAccount() {
             setIsPin("Please enter Pin")
         } else {
             dispatch(createAccount(form.firstName, form.lastName, form.email, form.password, form.pin));
-            // dispatch()
-            // navigate("/")
         }
-        
-    }
-    const createAcct = useSelector((state) => state.userLogin);
-    const {  error } = createAcct
+            }
+  
     return (
         <div className="register-bg">
             <div>
@@ -121,7 +127,7 @@ export default function CreateAccount() {
                             style={{background:"transparent", borderRadius:".6rem", outline:"none"}}
                             />
                             <i style={{marginLeft:"-2rem", color:"gray "}} onClick={togglePin} className={pinShown ? "fa fa-eye" : "fa fa-eye-slash"}></i>
-                            <p className="fa-file-zip-o" style={{fontSize:".7rem"}}>{isPin}</p>
+                            <p className="text-red" style={{fontSize:".7rem"}}>{isPin}</p>
 
                         </div>
                         {error && (

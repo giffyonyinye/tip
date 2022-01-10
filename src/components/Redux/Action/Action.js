@@ -6,22 +6,17 @@ import {
     LOGIN_ACTION,
     TRANSFER_ACTION,
     TRANSFER_SUCCESS,
-    TRANSFER_FAIL,
+    TRANSFER_FAILED,
     LOGIN_SUCCESS,
     LOGIN_FAILED,
     LOGOUT_ACTION,
-    TIP_ACTION,
-    TIP_SUCCESS,
-    TIP_FAILED,
-    TRANSACTION_HISTORY_SUCCESS,
-    TRANSACTION_HISTORY_ACTION,
-    TRANSACTION_HISTORY_FAILED,
-    TIP_TOGGLE_SUCCESS,
-    TIP_TOGGLE_ACTION,
-    TIP_TOGGLE_FAILED
+    GET_USER_ACTION,
+    GET_USER_SUCCESS,
+    GET_USER_FAILED
 
 } from '../constants/userConstants'
-const url = "https://tipproj.azurewebsites.net"
+
+const url = "https://localhost:5001"
 
 export const createAccount = (firstName, lastName, email, password, pin) => async (dispatch) => {
 
@@ -99,6 +94,37 @@ export const login = (email, password) => async (dispatch) => {
     }
 }
 
+export const getUser = (acctNumber) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type:GET_USER_ACTION
+        })
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }
+        console.log(acctNumber)
+        const { data } = await axios.get(
+            `${url}/api/Users/UserDetails?acctNum=${acctNumber}`,
+            config
+        )
+        dispatch({
+            type: GET_USER_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+       let err = error.response.data.Message
+        dispatch({
+            type: GET_USER_FAILED,
+            payload: err
+        })
+    }
+}
+
 
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
@@ -129,48 +155,11 @@ export const transfer = (acctNumber, receiver, amount, pin) => async (dispatch) 
             type: TRANSFER_SUCCESS,
             payload: data
         })
-
-        localStorage.setItem('userInfo', JSON.stringify(data))
-
-    } catch (error) {
-        dispatch({
-            type: TRANSFER_FAIL,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
-        })
-    }
-
-}
-export const toggleTip = (acctNumber, toggleStatus) => async (dispatch) => {
-
-    try {
-        dispatch({
-            type:TIP_TOGGLE_ACTION
-        })
-
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }
-
-        const { data } = await axios.post(
-            `https://localhost:5001/api/TipWallet/ToggleTipMyself?acctNum=${acctNumber}`,
-            { 'tipStatus': toggleStatus },
-            config
-        )
-
-        dispatch({
-            type:TIP_TOGGLE_SUCCESS,
-            payload: data
-        })
-
-        // localStorage.setItem('userInfo', JSON.stringify(data))
+        dispatch(getUser(acctNumber));
 
     } catch (error) {
         dispatch({
-            type: TIP_TOGGLE_FAILED,
+            type: TRANSFER_FAILED,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -179,75 +168,12 @@ export const toggleTip = (acctNumber, toggleStatus) => async (dispatch) => {
 
 }
 
-export const transaction_History = (acctNumber) => async (dispatch) => {
-
-    try {
-        dispatch({
-            type:TRANSACTION_HISTORY_ACTION
-        })
-
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }
-
-        const { data } = await axios.get(
-            `https://localhost:5001/api/Transactions/TransactionHistory?AcctNumber=${acctNumber}`,
-            config
-        )
-            console.log(data)
-        dispatch({
-            type: TRANSACTION_HISTORY_SUCCESS,
-            payload: data
-        })
 
 
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: TRANSACTION_HISTORY_FAILED,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
-        })
-    }
 
-}
 
-export const tip = (acctNumber, tip_status, tip_percentage) => async (dispatch) => {
-    try {
-        dispatch({
-            type:TIP_ACTION
-        })
 
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }
 
-        const { data } = await axios.post(
-            `https://localhost:5001/api/TipWallet/ActivateStatus?acctNum=${acctNumber}`,
-            { 'tipStatus': tip_status, 'tipPercent': tip_percentage  },
-            config
-        )
 
-        dispatch({
-            type: TIP_SUCCESS,
-            payload: data
-        })
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
-
-    } catch (error) {
-        dispatch({
-            type: TIP_FAILED,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
-        })
-    }
-}
-
-    
+  

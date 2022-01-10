@@ -1,11 +1,11 @@
 import React from 'react';
 import "./dashboard.css";
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector} from 'react-redux';
 
 const UserBalance = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+   
     return (
         <div>
             <div className="balance-bg  text-white p-2 rounded" >

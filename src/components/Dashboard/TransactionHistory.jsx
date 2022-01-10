@@ -1,25 +1,32 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { transaction_History } from '../Redux/Action/Action';
+import { transaction_History } from '../Redux/Action/transactionHistoryAction';
 import "../Dashboard/dashboard.css";
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 export default function TransactionHistory() {
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
+    const { userInfo, error } = userLogin;
     const transaction = useSelector((state) => state.transaction);
-    const { transactionInfo } = transaction;
-    console.log(transactionInfo)
+    const { transactionInfo, loading } = transaction;
+    console.log(transactionInfo, error, loading)
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const goToPreviousPath = () => {
         navigate(-1)
     }
+    useEffect(() => {
+        console.log(userInfo)
+        if(userInfo) {
+        dispatch(transaction_History(userInfo.acctNumber));
+        }
+    }, [userInfo])
 
     useEffect(() => {
-        dispatch(transaction_History(userInfo.acctNumber))
-    }, [])
+        dispatch(transaction_History(userInfo.acctNumber));
+    }, []);
+    
     return (
         <div>
             <div className="send-money-bg">

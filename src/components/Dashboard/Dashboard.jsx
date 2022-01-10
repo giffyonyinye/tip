@@ -1,11 +1,26 @@
 import React from 'react';
 import Header from '../Layout/Header';
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
 import "./dashboard.css"
 import UserBalance from './UserBalance';
+import { useEffect } from 'react';
+import { getUser } from '../Redux/Action/Action';
 
 const Dashboard = () => {
-    
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    // useEffect(() => {
+    //     if(!userInfo) {
+    //        navigate("/")
+    //     }
+    // }, [userInfo])
+    useEffect(() => {
+        dispatch(getUser(userInfo.acctNumber));
+    }, [])
     return (
         <div className="dashboard">
             <Header/>

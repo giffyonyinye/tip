@@ -5,12 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from '../Layout/Loader';
-import Message from '../Layout/Loader';
-import '../Layout/banner.css';;
-
-
-// import { useSelector } from 'react-redux';
-// import { logInAction, logInFailed, logInSuccess } from '../Redux/Action/Action';
+import '../Layout/banner.css';
 
 const LoginAuth = () => {
     const dispatch = useDispatch()
@@ -18,14 +13,18 @@ const LoginAuth = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [emailValidity, setEmailValidity] = useState(false);
     const [passwordValidity, setPasswordValidity] = useState(false);
-    // const [isLoading, setIsLoading] = useState(false);
-    const [isUserAuth, setIsUserAuth] = useState(false);
-    const [userData, setUserData] = useState([]);
     const [form, setForm] = useState({
         email: "",
         password: ""
     });
     const navigate = useNavigate();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo, error, loading } = userLogin;
+    useEffect(() => {
+        if(userInfo) {
+           navigate("/dashboard")
+        }
+    }, [userInfo])
     const handleChange = (e) => {
         if(form.email) {
             setEmailValidity(false);
@@ -50,14 +49,12 @@ const LoginAuth = () => {
             return setPasswordValidity(true);
         } else {
             dispatch(login(form.email, form.password));
-            // navigate("/dashboard")
         }
         
         
     }
 
-    const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo, error, loading } = userLogin;
+   
     return (
         <>
             <div className="banner text-white"> 

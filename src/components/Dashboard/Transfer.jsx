@@ -2,31 +2,29 @@ import React from 'react';
 import "./dashboard.css";
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import axios from 'axios';
-import { transfer, userInfo } from '../Redux/Action/Action';
+import { transfer } from '../Redux/Action/transferAction';
 import Modal from '../Layout/Modal';
 import logo from '../../assets/logo1.png';
 
 
 const Transfer = () => {
+    const [showModal, setShowModal] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    const transferred = useSelector((state) => state.transfer);
+    const { transferInfo } = transferred;
+
+
+
     const [form, setForm] = useState({
         toAccount: "",
-        amount: ""
+        amount: "",
+        pin: ""
     });
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleChange = (e) => {
-        // if(form.toAmount) {
-        //     setEmailValidity(false);
-        // }
-        // if(form.amount) {
-        //     setPasswordValidity(false);
-        // }
         return setForm({...form, [e.target.name] : e.target.value});
-
     };
     const banks = [
         "Access Bank",
@@ -37,17 +35,15 @@ const Transfer = () => {
     ]
     const transferMoney = (e) => {
         e.preventDefault();
-        // if (!form.email) {
-        //     setEmailValidity(true);
-        // } else if (!form.password) {
-        //     setPasswordValidity(true);
-        // } else {
-            // setIsLoading(true)
-            dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount))
-            navigate("/dashboard")
-            
-        // }
+        
+        dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount, form.pin));
+        if(!transferInfo.transactionAmount) {
+            setShowModal(false)
+        } else {
+            setShowModal(true)
+        }
     }
+
     return (
         <>
             <div className="send-money-bg ">
@@ -96,19 +92,28 @@ const Transfer = () => {
                                     <input onChange={handleChange} type="password" name="pin" id="pin" placeholder="Pin" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                 </div>
                                 <div className="text-center">
-                                    <button className="p-2 mt-3 w-50 rounded text-white border-0" style={{border:"1px solid grey", background:"#47133B"}}>Proceed</button>
+                                    <button  className="p-2 mt-3 w-50 rounded text-white border-0" style={{border:"1px solid grey", background:"#47133B"}}>Proceed</button>
                                 </div>
 
                             </div>
                         </form>
                     </div>
+                    <div>
+                        {
+                            showModal &&
+                            <Modal 
+                            showModal = {showModal} 
+                            transactionAmount = {transferInfo.transactionAmount}
+                            tipPercent = {transferInfo.tipPercent}
+                            date = {transferInfo.date}
+                        />
+                        }
+                        
+                    </div>
                     
                 </div>
-                
             </div>
-            <div>
-                <Modal/>
-            </div>
+            
         </>
     )
 }

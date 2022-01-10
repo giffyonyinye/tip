@@ -14,7 +14,6 @@ const Header = () => {
         dispatch(logout());
         navigate('/');
     } 
-    const data = JSON.parse(localStorage.getItem("userData"));
     return (
         <>
             <div className="d-flex justify-content-end">
