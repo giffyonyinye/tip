@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { walletHistory,  } from '../Redux/Action/walletActions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const TipHistory = () => {
@@ -9,6 +9,7 @@ const TipHistory = () => {
     const { userInfo } = userLogin;
     const history = useSelector((state) => state.tipHistory);
     const { tipHistory } = history;
+    const [emptyHistory, setEmptyHistory] = useState(false);
 
     
     const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const TipHistory = () => {
     useEffect(() => {
         dispatch(walletHistory(userInfo.acctNumber));
     }, []);
+    
+    const noHistory = () => {
+        if (tipHistory.length < 0 ) {
+            setEmptyHistory(true);
+        }
+    }
     
     return (
         <div>
@@ -25,6 +32,8 @@ const TipHistory = () => {
                         <h4>Tip History</h4>
                     </div>
                 </div>
+
+                
                 <div>
                     <table className="table table-active text-white w-75 m-auto mt-5">
                         <thead>
@@ -35,7 +44,12 @@ const TipHistory = () => {
                                 <th>Tip Amount</th>
                             </tr>
                         </thead>
-                        
+                        <div>
+                            {
+                                noHistory() &&
+                                <p>No Tip History Record</p>
+                            }
+                        </div>
                         <tbody>
                             
                                 {tipHistory.map((trans, index) => (

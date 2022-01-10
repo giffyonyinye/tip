@@ -15,7 +15,7 @@ export default function Modal(props) {
                         <p>its good</p>
                     </div>
                     <div className="modal-footer">
-                        <button>OK</button>
+                        <button onClick={props.onClose}>OK</button>
                     </div>
                 </div>
 
@@ -24,5 +24,7 @@ export default function Modal(props) {
         </>
     )
 }
+
+
 
 

@@ -8,6 +8,7 @@ import { toggleWalletReducer } from "./toggleWalletReducer";
 import { transferReducer } from "./transferReducer";
 import { walletHistoryReducer } from "./walletHistoryReducer";
 import { setWalletReducer } from "./setWalletReducer";
+import { getAccountName } from "./getAccountNameReducer";
 export const reducers = combineReducers(
     {
         userLogin: userReducer,
@@ -16,5 +17,6 @@ export const reducers = combineReducers(
         tipHistory : walletHistoryReducer,
         toggleTip: toggleWalletReducer,
         transfer: transferReducer,
-        setWallet: setWalletReducer
+        setWallet: setWalletReducer,
+        accountName: getAccountName
     });
