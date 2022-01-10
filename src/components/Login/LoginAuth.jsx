@@ -61,16 +61,17 @@ const LoginAuth = () => {
                 <div  style={{paddingTop:"5rem",marginRight:"5rem", display:"flex", justifyContent:"end"}}>
                     <div style={{width:"30%",  }}>
                         <div>
-                            <p className="m-0 h4">Welcome Back.</p>
-                            <hr style={{width:"15%", height:".2rem", backgroundColor:"#AB2656"}} />
+                            <p className="m-0 h2">Welcome Back!</p>
+                            <hr style={{width:"30%", height:".2rem", backgroundColor:"#AB2656"}} />
 
                             <div className="mt-5">
                                 <form onSubmit={handleLogin}>
                                     <div>
                                         <label>Email Address</label><br />
-                                        <input className="w-100 mt-2 p-2 rounded border border-secondary" type="email" 
+                                        <input className="w-100 p-2 rounded-3  mt-1 border-0 " type="email" 
                                         name="email" 
                                         id="email" 
+                                        style={{ outline:"none"}}
                                         onChange={handleChange}/>
                                         {emailValidity &&
                                             <p className="text-danger" style={{fontSize:".8rem"}}>please enter your email address</p>
@@ -81,9 +82,10 @@ const LoginAuth = () => {
                                     <div className="mt-3">
                                         <label>Password</label><br />
                                         <div>
-                                            <input className="w-100 mt-2 p-2 rounded border border-secondary" 
+                                            <input className="w-100 mt-1 p-2 rounded-3 border-0 " 
                                             type={passwordShown ? "text" : "password"} 
-                                            name="password" id="passowrd" 
+                                            name="password" id="passowrd"
+                                            style={{ outline:"none"}} 
                                             onChange={handleChange}
                                             />
                                             <i style={{marginLeft:"-2rem", color:"black "}} onClick={togglePassword} className={passwordShown ? "fa fa-eye" : "fa fa-eye-slash"}></i>
@@ -103,19 +105,20 @@ const LoginAuth = () => {
                                     </div>
                                     <div className="mt-5">
                                         <button 
-                                        className="text-white rounded w-100 p-2 border-0 outline-none" style={{backgroundColor:"#AB2656"}}>Login
+                                        className="text-white rounded w-100 p-2 border-0 outline-none" style={{backgroundColor:"#AB2656"}}>Login {loading && <i className="fa fa-spin fa-spinner"></i>}
                                         {/* {isLoading &&
                                         <i className="fa fa-spin fa-spinner"></i>
                                         } */}
                                         </button>
-                                        {loading && <Loader />}
+                                        {/* {loading && <Loader />} */}
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div>
-                            <Link to="/create-account">Sign Up</Link>
+                        <div className="text-center mt-3">
+                            <p className="m-0">Don't have an account yet?</p>
+                            <Link to="/create-account" className=" text-decoration-none" style={{color:"#ab2656"}}>Sign Up</Link>
                         </div>
                     </div>
                </div>

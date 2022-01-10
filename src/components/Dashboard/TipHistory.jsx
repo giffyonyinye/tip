@@ -29,13 +29,13 @@ const TipHistory = () => {
             <div>
                 <div>
                     <div className="text-center text-white" style={{paddingTop:"1rem"}}>
-                        <h4>Tip History</h4>
+                        <h4 style={{color:"#ab2656"}}>Tip History</h4>
                     </div>
                 </div>
 
                 
-                <div>
-                    <table className="table table-active text-white w-75 m-auto mt-5">
+                <div className="" style={{background:"#ab2656", overflow:"auto", height:"50%"}}>
+                    <table className="table text-white w-full m-auto mt-3">
                         <thead>
                             <tr>
                                 <th>Transaction Date</th>

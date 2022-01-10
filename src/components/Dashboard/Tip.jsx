@@ -25,6 +25,9 @@ const TipWallet = () => {
     useEffect(() => {
         dispatch(tipWalletDetails(userInfo.acctNumber));
     }, []);
+    const goToPreviousPath = () => {
+        navigate(-1)
+    }
    
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));
@@ -37,7 +40,7 @@ const TipWallet = () => {
     }
     const newWallet = () => {
         dispatch(tip(userInfo.acctNumber, trueStatus, form.tipPercent));
-        
+
     }
     const toggleFalse = () => {
         dispatch(toggleTip(userInfo.acctNumber, falseStatus));
@@ -70,20 +73,22 @@ const TipWallet = () => {
     ]
     return (
         <>
-          <div className="dashboard ">
+          <div className="tip-bg">
             
                 <div className="pt-4">
-                    <div className=" p-1" style={{background:"#f1d3db"}}>
-                        <div className="d-flex" style={{color:"#AB2656"}}>
-                            <i className="fa fa-arrow-left mt-2  ms-4"></i>
-                            <p className="mx-5 h5">Tip Myself</p>
+                    <div className="p-1 bg-white">
+                        <div className="" style={{color:"#AB2656"}}>
+                            <div className="container d-flex">
+                                <i onClick={goToPreviousPath} className="fa fa-arrow-left mt-1 text-white rounded-circle p-2" style={{backgroundColor:"#AB2656"}}></i>
+                                <p className="mx-5 mt-1 h5">Tip Myself</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div className="container d-flex justify-content-between">
+                <div className="container d-flex">
                     
-                    <div className="w-50">
+                    <div className="">
                         {
                             !error && (
                                 <div>
@@ -92,33 +97,36 @@ const TipWallet = () => {
                                             <div className="balance-bg w-75 text-white mt-4 p-3 rounded">
                                                 <div className="text-center">
                                                     <p className="m-0">Tip Balance</p>
-                                                    <p className="h1">₦ {walletDetails.walletBalance}</p>
+                                                    <p className="h1"><span style={{fontSize:"1.5rem"}}>₦</span> {walletDetails.walletBalance}</p>
                                                 </div>
+                                                
                                                 <div className="d-flex justify-content-between">
                                                     <div>
-                                                        {walletDetails.tipStatus === true &&
-                                                        <div>
-                                                            <p>Status: Enabled</p>
-                                                        </div>
-
-                                                        }
+                                                        <p className="m-0" style={{fontSize:".8rem"}}>Tip Percent</p>
+                                                        <p className="m-0"style={{fontSize:"1.2rem"}} >{walletDetails.tipPercent}%</p>
                                                     </div>
                                                     <div>
-                                                        {walletDetails.tipStatus === false &&
-                                                        <div>
-                                                            <p>Status: Disabled</p>
-                                                        </div>
+                                                        <button onClick={tipHistory} className="text-white ps-4 px-4" style={{border:"1px solid grey", background:"transparent", fontSize:".8rem"}}>Tip History</button>
+                                                        <div className="d-flex justify-content-between mt-2">
+                                                            <div>
+                                                                {walletDetails.tipStatus === true &&
+                                                                <div>
+                                                                    <p className="m-0">Status: Enabled</p>
+                                                                </div>
+                                                                }
+                                                                <div>
+                                                                {walletDetails.tipStatus === false &&
+                                                                <div>
+                                                                    <p className="m-0">Status: Disabled</p>
+                                                                </div>
 
-                                                        }
+                                                                }
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <button onClick={tipHistory} className="text-white" style={{border:"1px solid grey", background:"transparent", fontSize:".8rem"}}>Tip History</button>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <p className="m-0">Tip Percent</p>
-                                                    <p>{walletDetails.tipPercent}%</p>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     }
@@ -185,7 +193,7 @@ const TipWallet = () => {
                                     <div>
                                         {
                                         walletDetails.tipStatus === true && (
-                                            <div  className="d-flex justify-content-between border border-secondary rounded p-2">
+                                            <div className="d-flex justify-content-between border border-secondary p-2 rounded">
                                                 <div style={{color:"#ab2656", fontWeight:"bold"}}>
                                                         Tip Status
                                                 </div>
@@ -202,7 +210,7 @@ const TipWallet = () => {
                                     }
                                     {
                                         walletDetails.tipStatus === false && (
-                                            <div  className="d-flex justify-content-between border border-secondary ">
+                                            <div  className="d-flex justify-content-between border border-secondary p-2 rounded">
                                                 <div style={{color:"#ab2656", fontWeight:"bold"}}>
                                                 Tip Status
                                                 </div>

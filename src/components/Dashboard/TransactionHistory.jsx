@@ -36,8 +36,8 @@ export default function TransactionHistory() {
                         <h4>Transaction History</h4>
                     </div>
                 </div>
-                <div>
-                    <table className="table table-active text-white w-75b m-auto mt-5">
+                <div style={{overflow:"auto", height:"70vh"}}>
+                    <table className="table table-active text-white w-75b m-auto mt-5 " >
                         <thead>
                             <tr>
                                 <th>Transaction Date</th>

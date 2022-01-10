@@ -1,12 +1,19 @@
 .dashboard {
-    background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/TALAT-DASHBOARD.svg');
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-DASHBOARD-bg.svg');
+    background-size: cover;
+    /* height:100vh; */
+    background-repeat: no-repeat;
+}
+
+.tip-bg {
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-tipmyself-bg.svg');
     background-size: cover;
     height:100vh;
     background-repeat: no-repeat;
 }
 
 .send-money-bg {
-  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/send-money-bg.JPEG');
+  background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/sendMoney.svg');
   background-size: cover;
   height:100vh;
   background-repeat: no-repeat;
@@ -78,7 +85,7 @@
   
   /* Rounded sliders */
   .slider.round {
-    border-radius: 34px;
+    border-radius: 36px;
   }
   
   .slider.round:before {
@@ -127,7 +134,7 @@
   
   /* Rounded sliders */
   .slider2.round {
-    border-radius: 34px;
+    border-radius: 36px;
   }
   
   .slider2.round:before {

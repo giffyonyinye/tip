@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAccount } from '../Redux/Action/Action';
+import { Link } from 'react-router-dom';
 
 export default function CreateAccount() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -77,8 +78,12 @@ export default function CreateAccount() {
   
     return (
         <div className="register-bg">
-            <div>
+            <div className="d-flex justify-content-between">
                 <img className="mx-5 mt-3" style={{width:"8rem", height:"3rem"}} src={logo} alt="logo" />
+                <div className="mt-3">
+                    <Link to="/" className="text-decoration-none text-white text-center h5 px-4 ps-4 pt-1 pb-1 mx-5" style={{border:"1px solid #ab2656", fontWeight:"bold"}}>Log In</Link>
+                </div>
+                
             </div>
             <div className="text-white mt-5 mx-3" style={{width:"30%"}}>
                 <div>
