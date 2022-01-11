@@ -26,7 +26,7 @@ export default function CreateAccount() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
+    const { userInfo, loading } = userLogin;
     useEffect(() => {
         console.log(userInfo)
         if(userInfo) {
@@ -139,7 +139,9 @@ export default function CreateAccount() {
                             <div className="text-danger">{error}</div>
                         )}
                         <div className="mt-4 ">
-                            <button className="w-50 border-0 p-1 rounded-3" style={{color:"#ab2656", fontWeight:"bold", fontSize:"1.2rem"}}>Sign Up</button>
+                            <button className="w-50 border-0 p-1 rounded-3" style={{color:"#ab2656", fontWeight:"bold", fontSize:"1.2rem"}}>Sign Up
+                            {loading && <i className="fa fa-spin fa-spinner"></i>}
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -29,15 +29,16 @@ export default function TransactionHistory() {
     
     return (
         <div>
-            <div className="send-money-bg">
-                <div>
-                    <div className="d-flex text-white" style={{paddingTop:"4rem"}}>
-                        <i onClick={goToPreviousPath} className="fa fa-arrow-left mt-1 mx-5"></i>
-                        <h4>Transaction History</h4>
+            <div className="transaction-bg">
+                <div className="d-flex" style={{paddingTop:"2rem"}}>
+                    <div >
+                        <i onClick={goToPreviousPath} className="fa fa-arrow-left bg-white mt-1 mx-5 rounded-circle p-2" style={{color:"#ab2656"}}></i>
                     </div>
+                    <p className="text-white" style={{fontSize:"2rem"}}>Transaction History</p>
+
                 </div>
-                <div style={{overflow:"auto", height:"70vh"}}>
-                    <table className="table table-active text-white w-75b m-auto mt-5 " >
+                <div className="p-2 rounded mt-4" style={{overflow:"auto", width:"90%", margin:"auto", height:"80vh", background:"#D8CBD0"}}>
+                    <table className="table text-black w-full mt-2 " >
                         <thead>
                             <tr>
                                 <th>Transaction Date</th>
@@ -55,7 +56,7 @@ export default function TransactionHistory() {
                                         <td>{moment(trans.transactionDate).format("DD/MM/YY hh:mma")}</td>
                                         <td>{trans.transactionSourceAccount}</td>
                                         <td>{trans.transactionDestinationAccount}</td>
-                                        <td>{trans.transactionAmount}</td>
+                                        <td>₦{trans.transactionAmount}</td>
                                         <td>{trans.transactionUniqueReference}</td>
                                     </tr>
                                 ))}

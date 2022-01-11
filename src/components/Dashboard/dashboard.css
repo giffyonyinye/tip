@@ -12,6 +12,13 @@
     background-repeat: no-repeat;
 }
 
+.transaction-bg {
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/Transactionhistory.svg');
+    background-size: cover;
+    height:100vh;
+    background-repeat: no-repeat;
+}
+
 .send-money-bg {
   background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/sendMoney.svg');
   background-size: cover;

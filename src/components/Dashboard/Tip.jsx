@@ -178,7 +178,7 @@ const TipWallet = () => {
                                                         </select>
                                                     </div>
                                                     <div>
-                                                        <button onClick={newWallet} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
+                                                        <button onClick={newWallet} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#811a52"}}>Proceed</button>
                                                     </div>
                                                 </div>
                                                 }
@@ -242,7 +242,7 @@ const TipWallet = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <button onClick={ tipped} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#AB2656"}}>Proceed</button>
+                                            <button onClick={ tipped} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#811a52"}}>Proceed</button>
                                         </div>
                                     </div>
                                 }

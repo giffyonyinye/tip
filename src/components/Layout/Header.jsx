@@ -23,7 +23,7 @@ const Header = () => {
                 <div className="d-flex justify-content-between mx-5">
                     <div className="d-flex  p-2">
                         <i className="fa fa-user mt-1 mx-2"></i>
-                            <p className="m-0">Welcome, {userInfo && userInfo.acctName}</p>
+                            <p className="m-0 h5">Welcome, {userInfo && userInfo.acctName.toUpperCase()}</p>
                     </div>
                     <div className="p-2">
                         <button className="outline-none  rounded " style={{background:"transparent", border:"1px solid #ab2656", color:"#ab2656"}} onClick = {handleClick}>Logout</button>

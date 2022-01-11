@@ -34,12 +34,12 @@ const TipHistory = () => {
                 </div>
 
                 
-                <div className="" style={{background:"#ab2656", overflow:"auto", height:"50%"}}>
+                <div className="" style={{background:"#811a52", overflow:"auto", height:"50%"}}>
                     <table className="table text-white w-full m-auto mt-3">
                         <thead>
                             <tr>
                                 <th>Transaction Date</th>
-                                <th>Tip Amount</th>
+                                <th>Transaction Amount</th>
                                 <th>Tip Percent</th>
                                 <th>Tip Amount</th>
                             </tr>
@@ -55,8 +55,8 @@ const TipHistory = () => {
                                 {tipHistory.map((trans, index) => (
                                     <tr key={index}>
                                         <td>{moment(trans.date).format("DD/MM/YY hh:mma")}</td>
-                                        <td>{trans.tipAmount}</td>
-                                        <td>{trans.tipPercent}</td>
+                                        <td>₦{trans.transactionAmount}</td>
+                                        <td>{trans.tipPercent}%</td>
                                         <td>{trans.tipAmount}</td>
                                     </tr>
                                 ))}
