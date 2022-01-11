@@ -17,6 +17,11 @@ export default function TransactionHistory() {
         navigate(-1)
     }
     useEffect(() => {
+        if(!userInfo) {
+           navigate("/")
+        }
+    }, [userInfo])
+    useEffect(() => {
         console.log(userInfo)
         if(userInfo) {
         dispatch(transaction_History(userInfo.acctNumber));

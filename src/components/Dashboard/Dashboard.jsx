@@ -63,10 +63,10 @@ const Dashboard = () => {
                                 </Link>
                             </div>
 
-                            <div onClick={() => setShowModal(true)} className=" bg-white rounded mt-3 text-center d-flex justify-content-center" style={{boxShadow:"6px 6px 6px grey"}} >
+                            {/* <div onClick={() => setShowModal(true)} className=" bg-white rounded mt-3 text-center d-flex justify-content-center" style={{boxShadow:"6px 6px 6px grey"}} >
                                 <p className="m-0 mx-3">Data &<br /> Mobile Topup</p>
                                 <img className="mt-1" src={Datalogo} alt="logo" style={{width:"2rem", height:"2rem"}}/>
-                            </div>
+                            </div> */}
                         </div>
                     </div>     
                 </div>   

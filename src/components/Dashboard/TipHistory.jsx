@@ -49,7 +49,7 @@ const TipHistory = () => {
                                     <td>{moment(trans.date).format("DD/MM/YY hh:mma")}</td>
                                     <td>₦{trans.transactionAmount}</td>
                                     <td>{trans.tipPercent}%</td>
-                                    <td>{trans.tipAmount}</td>
+                                    <td>₦{trans.tipAmount}</td>
                                 </tr>
                             ))}
                         </tbody>

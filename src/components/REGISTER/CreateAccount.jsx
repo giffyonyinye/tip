@@ -27,6 +27,7 @@ export default function CreateAccount() {
     const navigate = useNavigate();
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo, loading } = userLogin;
+    
     useEffect(() => {
         console.log(userInfo)
         if(userInfo) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./dashboard.css";
 import { useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { transfer } from '../Redux/Action/transferAction';
 import Modal from '../Layout/Modal';
@@ -23,7 +23,11 @@ const Transfer = () => {
     const getAcctName = useSelector((state) => state.accountName);
     const { accountName } = getAcctName;
 
-
+    useEffect(() => {
+        if(!userInfo) {
+           navigate("/")
+        }
+    }, [userInfo])
 
     const [form, setForm] = useState({
         toAccount: "",
@@ -63,10 +67,13 @@ const Transfer = () => {
             setPinValidity(true)
         } else {
             dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount, form.pin));
-            
-                setShowModal(true)
-            
         } 
+
+        if (transferInfo.tipPercent === "") {
+            setShowModal(false)
+        } else {
+            setShowModal(true)
+        }
     }
 
     return (
@@ -159,6 +166,7 @@ const Transfer = () => {
                             onClose = {() => setShowModal(false)} 
                             transactionAmount = {transferInfo.transactionAmount}
                             tipPercent = {transferInfo.tipPercent}
+                            tipAmount = {transferInfo.tipAmount}
                             date = {transferInfo.date}
                         />
                         }
