@@ -19,7 +19,7 @@ const Transfer = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const transferred = useSelector((state) => state.transfer);
-    const { transferInfo, error } = transferred;
+    const { transferInfo,loading, error } = transferred;
     const getAcctName = useSelector((state) => state.accountName);
     const { accountName } = getAcctName;
 
@@ -142,7 +142,10 @@ const Transfer = () => {
                                     <p className="text-danger">{error}</p>
                                 </div>
                                 <div>
-                                    <button  className="p-2 mt-3 w-50 rounded text-white border-0" style={{border:"1px solid grey", background:"#ab2656"}}>Proceed</button>
+                                    <button  className="p-2 mt-3 w-50 rounded text-white border-0" style={{border:"1px solid grey", background:"#ab2656"}}>
+                                        Proceed
+                                        {loading && <i className="fa fa-spin fa-spinner"></i>}
+                                    </button>
                                 </div>
 
                             </div>

@@ -11,7 +11,7 @@ export default function DashboardModal(props) {
               <div className="modal-content">
                 <div className="modal-header">
                     <div className="modal-body">
-                        <p className="text-center m-0"> Oopss.. <br />Feature Not available</p>
+                        <p className="text-center m-0"> Sorry, <br />This feature is not available at the moment, kindly check back</p>
                     </div>
                     
                 </div>
