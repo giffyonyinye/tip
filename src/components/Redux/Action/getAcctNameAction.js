@@ -5,7 +5,7 @@ import {
     GET_ACCOUNT_NAME_FAILED
 } 
 from "../constants/getAcctNameConstant";
-const url = "https://localhost:5001"
+const url = "https://tipproj.azurewebsites.net"
 
 export const getAccountName = (acctNumber) => async (dispatch) => {
 

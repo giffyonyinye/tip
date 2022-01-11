@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TRANSACTION_HISTORY_ACTION, TRANSACTION_HISTORY_SUCCESS, TRANSACTION_HISTORY_FAILED } from "../constants/userConstants";
 
-const url = "https://localhost:5001"
+const url = "https://tipproj.azurewebsites.net"
 
 export const transaction_History = (acctNumber) => async (dispatch) => {
 
