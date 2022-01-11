@@ -18,12 +18,6 @@ const TipHistory = () => {
         dispatch(walletHistory(userInfo.acctNumber));
     }, []);
     
-    const noHistory = () => {
-        if (tipHistory.length < 0 ) {
-            setEmptyHistory(true);
-        }
-    }
-    
     return (
         <div>
             <div>
@@ -44,28 +38,23 @@ const TipHistory = () => {
                                 <th>Tip Amount</th>
                             </tr>
                         </thead>
-                        <div>
-                            {
-                                noHistory() &&
-                                <p>No Tip History Record</p>
-                            }
-                        </div>
+                        
                         <tbody>
-                            
-                                {tipHistory.map((trans, index) => (
-                                    <tr key={index}>
-                                        <td>{moment(trans.date).format("DD/MM/YY hh:mma")}</td>
-                                        <td>₦{trans.transactionAmount}</td>
-                                        <td>{trans.tipPercent}%</td>
-                                        <td>{trans.tipAmount}</td>
-                                    </tr>
-                                ))}
-                            
+                            {
+                               tipHistory.length === 0 &&
+                                <p className="ps-2">No Tip History Record</p>
+                            }
+                            {tipHistory.map((trans, index) => (
+                                <tr key={index}>
+                                    <td>{moment(trans.date).format("DD/MM/YY hh:mma")}</td>
+                                    <td>₦{trans.transactionAmount}</td>
+                                    <td>{trans.tipPercent}%</td>
+                                    <td>{trans.tipAmount}</td>
+                                </tr>
+                            ))}
                         </tbody>
-
                     </table>
                 </div>
-   
             </div>
         </div>
     )

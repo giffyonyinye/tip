@@ -37,7 +37,7 @@ export default function TransactionHistory() {
                     <p className="text-white" style={{fontSize:"2rem"}}>Transaction History</p>
 
                 </div>
-                <div className="p-2 rounded mt-4" style={{overflow:"auto", width:"90%", margin:"auto", height:"80vh", background:"#D8CBD0"}}>
+                <div className="p-2 rounded mt-4" style={{overflow:"auto", width:"90%", margin:"auto", height:"80vh", background:"whitesmoke"}}>
                     <table className="table text-black w-full mt-2 " >
                         <thead>
                             <tr>
@@ -48,24 +48,25 @@ export default function TransactionHistory() {
                                 <th>Reference ID</th>
                             </tr>
                         </thead>
-                        
+                        <div>
+                            {
+                               transactionInfo.length === 0 &&
+                                <p className="p-1">No Transaction History Record</p>
+                            }
+                        </div>
                         <tbody>
-                            
-                                {transactionInfo.map((trans, index) => (
-                                    <tr key={index}>
-                                        <td>{moment(trans.transactionDate).format("DD/MM/YY hh:mma")}</td>
-                                        <td>{trans.transactionSourceAccount}</td>
-                                        <td>{trans.transactionDestinationAccount}</td>
-                                        <td>₦{trans.transactionAmount}</td>
-                                        <td>{trans.transactionUniqueReference}</td>
-                                    </tr>
-                                ))}
-                            
+                            {transactionInfo.map((trans, index) => (
+                                <tr key={index}>
+                                    <td>{moment(trans.transactionDate).format("DD/MM/YY hh:mma")}</td>
+                                    <td>{trans.transactionSourceAccount}</td>
+                                    <td>{trans.transactionDestinationAccount}</td>
+                                    <td>₦{trans.transactionAmount}</td>
+                                    <td>{trans.transactionUniqueReference}</td>
+                                </tr>
+                            ))}
                         </tbody>
-
                     </table>
                 </div>
-   
             </div>
         </div>
     )

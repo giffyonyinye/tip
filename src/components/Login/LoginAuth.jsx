@@ -67,7 +67,7 @@ const LoginAuth = () => {
                             <div className="mt-5">
                                 <form onSubmit={handleLogin}>
                                     <div>
-                                        <label>Email Address</label><br />
+                                        <label style={{color:"#811a52"}}>Email Address</label><br />
                                         <input className="w-100 p-2 rounded-3  mt-1 border-0 " type="email" 
                                         name="email" 
                                         id="email" 
@@ -80,7 +80,7 @@ const LoginAuth = () => {
                                         
                                     </div>
                                     <div className="mt-3">
-                                        <label>Password</label><br />
+                                        <label style={{color:"#811a52"}}>Password</label><br />
                                         <div>
                                             <input className="w-100 mt-1 p-2 rounded-3 border-0 " 
                                             type={passwordShown ? "text" : "password"} 
@@ -100,12 +100,12 @@ const LoginAuth = () => {
                                         
                                     </div>
                                     <div>
-                                        <p className="text-white" style={{textAlign:
-                                    "right"}}>Forgot Password?</p>
+                                        <p style={{textAlign:
+                                    "right", color:"#811a52"}}>Forgot Password?</p>
                                     </div>
                                     <div className="mt-5">
                                         <button 
-                                        className="text-white rounded w-100 p-2 border-0 outline-none" style={{backgroundColor:"#AB2656"}}>Login {loading && <i className="fa fa-spin fa-spinner"></i>}
+                                        className="text-white rounded w-100 p-2 border-0 outline-none" style={{backgroundColor:"#811a52"}}>Login {loading && <i className="fa fa-spin fa-spinner"></i>}
                                         {/* {isLoading &&
                                         <i className="fa fa-spin fa-spinner"></i>
                                         } */}
@@ -118,7 +118,7 @@ const LoginAuth = () => {
 
                         <div className="text-center mt-3">
                             <p className="m-0">Don't have an account yet?</p>
-                            <Link to="/create-account" className=" text-decoration-none" style={{color:"#ab2656"}}>Sign Up</Link>
+                            <Link to="/create-account" className=" text-decoration-none" style={{color:"#811a52"}}>Sign Up</Link>
                         </div>
                     </div>
                </div>

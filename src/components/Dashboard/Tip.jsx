@@ -5,12 +5,15 @@ import { tip, tipWalletDetails, toggleTip } from '../Redux/Action/walletActions'
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import TipHistory from './TipHistory';
+import TipModal from '../Layout/TipModal';
 
 const TipWallet = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const walletStatus = useSelector((state) => state.walletDetails);
     const { walletDetails, error } = walletStatus;
+    const [showModal, setShowModal] = useState(false);
+
 
     const [form, setForm] = useState({
         tipPercent: 0,
@@ -28,7 +31,6 @@ const TipWallet = () => {
     const goToPreviousPath = () => {
         navigate(-1)
     }
-   
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));
         console.log(form)
@@ -39,6 +41,7 @@ const TipWallet = () => {
         dispatch(tip(walletDetails.acctNumber, walletDetails.tipStatus, form.tipPercent))
     }
     const newWallet = () => {
+        setShowModal(true);
         dispatch(tip(userInfo.acctNumber, trueStatus, form.tipPercent));
 
     }
@@ -86,11 +89,11 @@ const TipWallet = () => {
                     </div>
                 </div>
                 
-                <div className="container d-flex">
+                <div className="container d-flex ">
                     
-                    <div className="">
+                    <div className="w-50">
                         {
-                            !error && (
+                            !error ?  (
                                 <div>
                                     {userInfo && 
                                         <div>
@@ -131,13 +134,16 @@ const TipWallet = () => {
                                         </div>
                                     }
                                 </div>
-                            ) 
+                            ) : 
+                            <div>
+                                {
+                                    error && 
+                                    <div className="text-white balance-bg w-75 text-white mt-4 p-3 rounded p-4">You dont have a Tip Wallet please activate</div>
+                                }
+                        </div>
                         }
 
-                        {
-                            error && 
-                            <div className="text-white balance-bg w-75 text-white mt-4 p-3 rounded p-4">You dont have a Tip Wallet please activate</div>
-                        }
+                        
                           
 
                         <div className="bg-white w-75 p-3 rounded mt-2">
@@ -224,7 +230,10 @@ const TipWallet = () => {
                                             
                                         )
                                     }
-                                        <div>
+                                    <div>
+                                        {walletDetails.tipStatus === true &&
+                                            <div>
+                                                <div>
                                             <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
                                                 <option value="tip-percentage" >Tip Percentage</option>
                                                 {tipPercentage.map(p => (
@@ -244,6 +253,11 @@ const TipWallet = () => {
                                         <div>
                                             <button onClick={ tipped} className="p-2 mt-3 w-100 rounded text-white" style={{border:"1px solid grey", background:"#811a52"}}>Proceed</button>
                                         </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                        
                                     </div>
                                 }
                             </div>
@@ -260,7 +274,16 @@ const TipWallet = () => {
                     </div>
                     
                 </div>
-
+                <div>
+                    {
+                        showModal &&
+                        <TipModal 
+                        showModal = {() => setShowModal(true)} 
+                        onClose = {() => setShowModal(false)} 
+                    />
+                    }
+                    
+                </div>
                 
             </div>  
         </>
