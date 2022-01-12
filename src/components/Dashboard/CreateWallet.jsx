@@ -39,7 +39,6 @@ export default function CreateWallet() {
     ]
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));
-        console.log(form)
         return setForm({...form, [e.target.name] : e.target.value});
 
     };
