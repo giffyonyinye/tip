@@ -58,7 +58,7 @@ const LoginAuth = () => {
         <>
             <div className="banner text-white"> 
                 <div  style={{paddingTop:"5rem",marginRight:"5rem", display:"flex", justifyContent:"end"}}>
-                    <div style={{width:"30%",  }}>
+                    <div className="col-md-4" >
                         <div>
                             <p className="m-0 h2">Welcome Back!</p>
                             <hr style={{width:"30%", height:".2rem", backgroundColor:"#AB2656"}} />

@@ -89,7 +89,7 @@ export default function CreateAccount() {
                 </div>
                 
             </div>
-            <div className="text-white mt-5 mx-3" style={{width:"30%"}}>
+            <div className="text-white mt-5 mx-3 col-md-3" style={{}}>
                 <div>
                     <p style={{fontWeight:"lighter", fontSize:"3rem"}}>Sign Up </p>
                 </div>

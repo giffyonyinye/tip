@@ -26,8 +26,10 @@ const Dashboard = () => {
         }
     }, [userInfo]);
     
+    
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
+       
     }, []);
     
     return (

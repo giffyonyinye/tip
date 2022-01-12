@@ -59,7 +59,7 @@ export const createAccount = (firstName, lastName, email, password, pin) => asyn
     }
 }
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password, acctNumber) => async (dispatch) => {
 
     try {
         dispatch({
@@ -82,8 +82,8 @@ export const login = (email, password) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: data
         })
-
         localStorage.setItem('userInfo', JSON.stringify(data))
+        dispatch(getUser(acctNumber))
 
     } catch (error) {
        let err = error.response.data.Message
