@@ -36,6 +36,8 @@ export default function CreateWallet() {
     const whenTipped = [
         "On every debit",
         "When I send money",
+        "Pay Bills",
+        "Mobile Top"
     ]
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));
@@ -54,7 +56,7 @@ export default function CreateWallet() {
                     <div>
                         <div>
                             <div className="text-white balance-bg  text-white mt-4 p-3 rounded p-4">
-                                You dont have a Tip Wallet please activate
+                                You don't have a Tip Wallet. Please activate.
                             </div>
                         </div>
 

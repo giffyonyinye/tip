@@ -1,11 +1,16 @@
 import React from 'react';
 import "./dashboard.css";
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import { useEffect } from 'react';
+import { getUser } from '../Redux/Action/Action';
 
 const UserBalance = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-   
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUser(userInfo.acctNumber));
+    }, [])
     return (
         <div>
             <div className="balance-bg  text-white p-2 rounded"  style={{boxShadow:"6px 6px 6px grey"}}>

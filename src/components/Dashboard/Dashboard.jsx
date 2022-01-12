@@ -24,10 +24,11 @@ const Dashboard = () => {
         if(!userInfo) {
            navigate("/")
         }
-    }, [userInfo])
+    }, [userInfo]);
+    
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
-    }, [])
+    }, []);
     
     return (
         <div className="dashboard">

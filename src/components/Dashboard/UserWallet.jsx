@@ -14,11 +14,11 @@ export default function UserWallet() {
     const { userInfo } = userLogin;
     const walletStatus = useSelector((state) => state.walletDetails);
     const { walletDetails, loading, error } = walletStatus;
-    useEffect(() => {
-        if(!userInfo) {
-           navigate("/")
-        }
-    }, [userInfo])
+    // useEffect(() => {
+    //     if(!userInfo) {
+    //        navigate("/")
+    //     }
+    // }, [userInfo])
 
   
     useEffect(() => {
@@ -77,7 +77,9 @@ export default function UserWallet() {
     ]
     const whenTipped = [
         "On every debit",
-        "When I send money"
+        "When I send money",
+        "Pay Bills",
+        "Mobile Top"
     ]
     return (
         <div>
@@ -176,9 +178,10 @@ export default function UserWallet() {
                                                     <option value={p}>{p}</option>
                                                 ))}
                                             </select>
-                                            {whenTippedValidity &&
-                                             <p className="text-danger" style={{fontSize:".7rem"}}>this field cannot be empty</p>
+                                            {percentValidity &&
+                                             <p className="text-danger" style={{fontSize:".7rem"}}>Please select an option.</p>
                                             }
+                                            
                                         </div>
                     
                                         <div>
@@ -188,8 +191,8 @@ export default function UserWallet() {
                                                     <option value={tip}>{tip}</option>
                                                 ))}
                                             </select>
-                                            {percentValidity &&
-                                             <p className="text-danger" style={{fontSize:".7rem"}}>this field cannot be empty</p>
+                                            {whenTippedValidity &&
+                                             <p className="text-danger" style={{fontSize:".7rem"}}>Please select an option.</p>
                                             }
                                            
                                         </div>

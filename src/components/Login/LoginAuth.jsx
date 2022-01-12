@@ -25,6 +25,7 @@ const LoginAuth = () => {
            navigate("/dashboard")
         }
     }, [userInfo])
+   
     const handleChange = (e) => {
         if(form.email) {
             setEmailValidity(false);
@@ -51,6 +52,7 @@ const LoginAuth = () => {
             dispatch(login(form.email, form.password));
         } 
     }
+     
 
     return (
         <>

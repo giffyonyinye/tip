@@ -10,9 +10,7 @@ export default function Modal(props) {
     const navigate = useNavigate();
     
     const handleClick = () => {
-        if(userInfo) {
-            navigate("/dashboard");
-         }
+        navigate("/");  
     }
     
   if(!props.showModal) {

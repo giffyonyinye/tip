@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { getUser } from "./Action";
+
 import { 
     TIP_ACTION,
     TIP_SUCCESS,
@@ -40,6 +42,7 @@ export const toggleTip = (acctNumber, toggleStatus) => async (dispatch) => {
             payload: data
         })
         dispatch(tipWalletDetails(acctNumber));
+        dispatch(getUser(acctNumber));
 
     } catch (error) {
         dispatch({
@@ -75,6 +78,7 @@ export const tip = (acctNumber, tip_status, tip_percentage) => async (dispatch) 
             payload: data
         })
         dispatch(tipWalletDetails(acctNumber));
+        dispatch(getUser(acctNumber));
 
 
     } catch (error) {
@@ -108,6 +112,7 @@ export const tipWalletDetails = (acctNumber) => async (dispatch) => {
             type: TIP_WALLET_SUCCESS,
             payload: data
         })
+        dispatch(getUser(acctNumber));
 
 
     } catch (error) {
@@ -144,6 +149,7 @@ export const walletHistory = (acctNumber) => async (dispatch) => {
             type: WALLET_HISTORY_SUCCESS,
             payload: data
         })
+        dispatch(getUser(acctNumber))
 
 
     } catch (error) {
@@ -154,6 +160,8 @@ export const walletHistory = (acctNumber) => async (dispatch) => {
                 ? error.response.data
                 : error.message,
         })
+        dispatch(getUser(acctNumber));
+
     }
 
 }

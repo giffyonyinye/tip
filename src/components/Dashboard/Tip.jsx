@@ -3,13 +3,21 @@ import "./dashboard.css";
 import { useNavigate } from 'react-router';
 import CreateWallet from './CreateWallet';
 import UserWallet from './UserWallet';
+import { getUser } from '../Redux/Action/Action';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const TipWallet = () => {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const goToPreviousPath = () => {
         navigate(-1)
     }
-    
+    useEffect(() => {
+        dispatch(getUser(userInfo.acctNumber));
+    }, [])
     return (
         <>
           <div className="tip-bg">

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import './modal.css';
+import { getUser } from '../Redux/Action/Action';
 import { tip } from '../Redux/Action/walletActions';
 
 export default function TipModal(props) {
@@ -15,6 +16,9 @@ export default function TipModal(props) {
         // props.onClose();
         navigate("/dashboard")
     }
+    useEffect(() => {
+       getUser(walletDetails.acctNumber)
+    }, [])
     
   if(!props.showModal) {
     return null

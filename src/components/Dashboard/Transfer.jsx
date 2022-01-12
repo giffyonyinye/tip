@@ -104,7 +104,7 @@ const Transfer = () => {
                                     </select>
                                     {
                                         bankValidity &&
-                                        <p className="text-danger" style={{fontSize:".8rem"}}>please select destination bank</p>
+                                        <p className="text-danger" style={{fontSize:".8rem"}}>Please select destination bank</p>
                                     }
                                 </div>
                                 <div className="mt-2">
@@ -113,7 +113,7 @@ const Transfer = () => {
                                     <p className="text-black m-0" style={{fontSize:"1rem", color:"#ab2656"}}>{accountName.acctName}</p>
                                     {
                                         acctNumberValidity &&
-                                        <p className="text-danger" style={{fontSize:".8rem"}}>please enter account number</p>
+                                        <p className="text-danger" style={{fontSize:".8rem"}}>Please enter account number</p>
                                     }
                                 </div>
                                 <div className="mt-2">
@@ -121,7 +121,7 @@ const Transfer = () => {
                                     <input onChange={handleChange} onClick={getName} type="text" name="amount" id="amount" placeholder="Enter Amount" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                     {
                                         amountValidity &&
-                                        <p className="text-danger" style={{fontSize:".8rem"}}>please enter amount</p>
+                                        <p className="text-danger" style={{fontSize:".8rem"}}>Please enter amount</p>
                                     }
                                 </div>
                                 <div className="mt-2">
@@ -129,7 +129,7 @@ const Transfer = () => {
                                     <input onChange={handleChange} type="text" name="desc" id="desc" placeholder="Description" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                     {
                                         descValidity &&
-                                        <p className="text-danger" style={{fontSize:".8rem"}}>this field cannot be empty</p>
+                                        <p className="text-danger" style={{fontSize:".8rem"}}>This field cannot be empty</p>
                                     }
                                 </div>
                                 <div className="mt-2">
@@ -137,7 +137,7 @@ const Transfer = () => {
                                     <input onChange={handleChange} type="password" name="pin" id="pin" placeholder="Pin" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                     {
                                         pinValidity &&
-                                        <p className="text-danger" style={{fontSize:".8rem"}}>enter Pin</p>
+                                        <p className="text-danger" style={{fontSize:".8rem"}}>Enter Pin</p>
                                     }
                                 </div>
                                 <div>
