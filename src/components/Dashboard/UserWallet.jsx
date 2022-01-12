@@ -79,7 +79,7 @@ export default function UserWallet() {
         "On every debit",
         "When I send money",
         "Pay Bills",
-        "Mobile Top"
+        "Mobile TopUp"
     ]
     return (
         <div>

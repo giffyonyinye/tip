@@ -37,7 +37,7 @@ export default function CreateWallet() {
         "On every debit",
         "When I send money",
         "Pay Bills",
-        "Mobile Top"
+        "Mobile TopUp"
     ]
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));
