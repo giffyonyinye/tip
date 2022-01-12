@@ -23,7 +23,7 @@ export default function Modal(props) {
         {userInfo && (
            <div className="modal">
                 <div className="modal-content">
-                    <div className=" m-auto" style={{width:"15%"}}>
+                    <div className=" m-auto" style={{width:"10%"}}>
                         <img className="" src={image} alt="pic" />
                     </div>
                     <div className="modal-header">
