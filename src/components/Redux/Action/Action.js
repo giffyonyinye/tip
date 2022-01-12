@@ -16,7 +16,7 @@ import {
 
 } from '../constants/userConstants'
 
-const url = "https://localhost:5001"
+const url = "https://tipproj.azurewebsites.net"
 
 export const createAccount = (firstName, lastName, email, password, pin) => async (dispatch) => {
 

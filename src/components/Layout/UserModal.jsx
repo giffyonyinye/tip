@@ -5,14 +5,11 @@ import './modal.css';
 import { tip } from '../Redux/Action/walletActions';
 
 export default function TipModal(props) {
+    const toggle = useSelector((state) => state.toggleTip);
+    const { toggleTip} = toggle;
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const walletStatus = useSelector((state) => state.walletDetails);
-    const { walletDetails, error } = walletStatus;
-   let message = "You have successfully enabled your wallet"
     const handleClick = () => {
-        dispatch(tip(walletDetails.acctNumber, walletDetails.tipStatus, props.tipPercent));
-        // props.onClose();
         navigate("/dashboard")
     }
     
@@ -21,12 +18,13 @@ export default function TipModal(props) {
   }
     return (
         <>
-        {props.tipPercent && (
+        {toggleTip && (
             <div className="modal">
                 <div className="modal-content">
                   <div className="modal-header">
                       <div className="modal-body">
-                          <p className="text-center m-0">Tip Myself Wallet enabled successfully.</p>
+                          <p className="text-center m-0">Tip Myself Wallet updated successfully.</p>
+                        
                       </div>
                       
                   </div>

@@ -9,9 +9,7 @@ const TipWallet = () => {
     const goToPreviousPath = () => {
         navigate(-1)
     }
-    // useEffect(() => {
-    //    dispatch(tipWalletDetails(userInfo.acctNumber))
-    // })
+    
     return (
         <>
           <div className="tip-bg">

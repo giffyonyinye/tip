@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TipModal from '../Layout/TipModal';
 import { tip } from '../Redux/Action/walletActions';
-import { tipWalletDetails } from '../Redux/Action/walletActions';
+import { getUser } from '../Redux/Action/Action';
 
 export default function CreateWallet() {
     const walletStatus = useSelector((state) => state.walletDetails);
@@ -20,6 +20,9 @@ export default function CreateWallet() {
         tipPercent: 0,
         whenTipped: ""
     });
+    useEffect(() => {
+        dispatch(getUser(userInfo.acctNumber));
+    }, [])
     
     const showWalletOptions = () => {
         setShowOptions(true);
@@ -33,9 +36,6 @@ export default function CreateWallet() {
     const whenTipped = [
         "On every debit",
         "When I send money",
-        "When I recharge",
-        "When I buy data",
-        "When I pay bills (electricity, TV subscription, etc.)"
     ]
     const handleChange = (e) => {
         console.log(setForm({...form, [e.target.name] : e.target.value}));

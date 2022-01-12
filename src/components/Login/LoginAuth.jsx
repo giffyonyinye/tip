@@ -49,12 +49,9 @@ const LoginAuth = () => {
             return setPasswordValidity(true);
         } else {
             dispatch(login(form.email, form.password));
-        }
-        
-        
+        } 
     }
 
-   
     return (
         <>
             <div className="banner text-white"> 

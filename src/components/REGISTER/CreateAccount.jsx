@@ -1,13 +1,15 @@
 import React from 'react';
 import '../Dashboard/dashboard.css';
 import logo from '../../assets/logo1.png';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useState } from 'react';
+// import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAccount } from '../Redux/Action/Action';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 export default function CreateAccount() {
+    const [showModal, setShowModal] = useState(false);
     const [passwordShown, setPasswordShown] = useState(false);
     const [pinShown, setPinShown] = useState(false);
     const [form, setForm] = useState({
@@ -24,16 +26,16 @@ export default function CreateAccount() {
     const [isPin, setIsPin] = useState("");
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo, loading } = userLogin;
+    const {  loading } = userLogin;
     
-    useEffect(() => {
-        console.log(userInfo)
-        if(userInfo) {
-           navigate("/dashboard");
-        }
-    }, [userInfo])
+    // useEffect(() => {
+    //     console.log(userInfo)
+    //     if(userInfo) {
+    //        navigate("/dashboard");
+    //     }
+    // }, [userInfo])
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
@@ -74,8 +76,9 @@ export default function CreateAccount() {
             setIsPin("Please enter Pin")
         } else {
             dispatch(createAccount(form.firstName, form.lastName, form.email, form.password, form.pin));
+            setShowModal(true);
         }
-            }
+    }
   
     return (
         <div className="register-bg">
@@ -133,7 +136,7 @@ export default function CreateAccount() {
                             style={{background:"transparent", borderRadius:".6rem", outline:"none"}}
                             />
                             <i style={{marginLeft:"-2rem", color:"gray "}} onClick={togglePin} className={pinShown ? "fa fa-eye" : "fa fa-eye-slash"}></i>
-                            <p className="text-red" style={{fontSize:".7rem"}}>{isPin}</p>
+                            <p className="text-danger" style={{fontSize:".7rem"}}>{isPin}</p>
 
                         </div>
                         {error && (
@@ -146,6 +149,16 @@ export default function CreateAccount() {
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div>
+                {
+                    showModal &&
+                    <Modal 
+                    showModal = {() => setShowModal(true)} 
+                    onClose = {() => setShowModal(false)} 
+                />
+                }
             </div>
         </div>
     )

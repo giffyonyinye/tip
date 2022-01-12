@@ -71,8 +71,6 @@ const Transfer = () => {
         }     
     }
 
-    console.log(transferInfo)
-
     return (
         <>
             <div className="send-money-bg ">

@@ -28,9 +28,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
     }, [])
-    // const modal = () => {
-    //     setShowModal(true)
-    // }
+    
     return (
         <div className="dashboard">
             <Header/>
