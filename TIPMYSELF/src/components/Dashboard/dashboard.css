@@ -6,7 +6,7 @@
 }
 
 .tip-bg {
-    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-tipmyself-bg.svg');
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('https://res.cloudinary.com/problematic/image/upload/v1641988639/TALAT-tipmyself-menu-bg_1_oijn7n.svg');
     background-size: cover;
     height:100vh;
     background-repeat: no-repeat;
@@ -20,14 +20,14 @@
 }
 
 .send-money-bg {
-  background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/sendMoney.svg');
+  background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('https://res.cloudinary.com/problematic/image/upload/v1641988515/sendMoney_qw9ep2.svg');
   background-size: cover;
   height:100vh;
   background-repeat: no-repeat;
 }
 
 .register-bg {
-  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/register.jpg');
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://res.cloudinary.com/problematic/image/upload/v1641988892/register_ns1rws.jpg');
   background-size: cover;
   height:100vh;
   background-repeat: no-repeat;
