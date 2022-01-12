@@ -97,7 +97,7 @@ const Transfer = () => {
                                 <div>
                                     <p className="m-0 "  style={{color:"#ab2656", fontWeight:"bold"}}>Select Bank</p>
                                     <select name="bank" id="bank" className="text-secondary w-100 p-2" onChange={handleChange}>
-                                        <option disabled value="select">Please select an option</option>
+                                        <option value="select">Please select an option</option>
                                         {banks.map((bank, index)=> (
                                             <option key={index} value="bank">{bank}</option>
                                         ))}
