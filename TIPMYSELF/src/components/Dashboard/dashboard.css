@@ -1,0 +1,149 @@
+.dashboard {
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-DASHBOARD-bg.svg');
+    background-size: cover;
+    /* height:100vh; */
+    background-repeat: no-repeat;
+}
+
+.tip-bg {
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-tipmyself-bg.svg');
+    background-size: cover;
+    height:100vh;
+    background-repeat: no-repeat;
+}
+
+.transaction-bg {
+    background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/Transactionhistory.svg');
+    background-size: cover;
+    height:100vh;
+    background-repeat: no-repeat;
+}
+
+.send-money-bg {
+  background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/sendMoney.svg');
+  background-size: cover;
+  height:100vh;
+  background-repeat: no-repeat;
+}
+
+.register-bg {
+  background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/register.jpg');
+  background-size: cover;
+  height:100vh;
+  background-repeat: no-repeat;
+}
+
+.balance-bg {
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)), url('../../assets/balance-bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 20px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ab2656;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    right: 0px;
+    bottom: 1px;
+    background-color: white;      
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #ccc;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #ccc;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(-30px);
+    -ms-transform: translateX(-30px);
+    transform: translateX(-30px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 36px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
+  .slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider2:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 0px;
+    bottom: 1px;
+    background-color: white;      
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider2 {
+    background-color: #ab2656;
+  }
+  
+  input:focus + .slider2 {
+    box-shadow: 0 0 1px #ab2656;
+  }
+  
+  input:checked + .slider2:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+  
+  /* Rounded sliders */
+  .slider2.round {
+    border-radius: 36px;
+  }
+  
+  .slider2.round:before {
+    border-radius: 50%;
+  }
