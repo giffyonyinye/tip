@@ -84,13 +84,13 @@ export default function UserWallet() {
     return (
         <div>
         <div className="container d-flex ">
-            <div className="">
+            <div className="w-50">
                 { !error && 
                     <div>
                         <div>
                         {userInfo && 
                             <div>
-                                <div className="balance-bg w-75 col-md-4 text-white mt-4 p-3 rounded">
+                                <div className="balance-bg w-75 text-white mt-4 p-3 rounded">
                                     <div className="text-center">
                                         <p className="m-0">Tip Balance</p>
                                         <p className="h1"><span style={{fontSize:"1.5rem"}}>₦</span> {walletDetails.walletBalance}</p>
