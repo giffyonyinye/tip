@@ -66,15 +66,12 @@ const Transfer = () => {
         } else if (!form.pin) {
             setPinValidity(true)
         } else {
-            dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount, form.pin));
-        } 
-
-        if (transferInfo.tipPercent === "") {
-            setShowModal(false)
-        } else {
-            setShowModal(true)
-        }
+            dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount, form.pin))
+           !loading && setShowModal(true)
+        }     
     }
+
+    console.log(transferInfo)
 
     return (
         <>

@@ -28,8 +28,8 @@ const TipHistory = () => {
                 </div>
 
                 
-                <div className="" style={{background:"#811a52", overflow:"auto", height:"50%"}}>
-                    <table className="table text-white w-full m-auto mt-3">
+                <div style={{background:"#811a52", overflow:"auto", height:"30rem"}}>
+                    <table className="table text-white w-full m-auto mt-3" >
                         <thead>
                             <tr>
                                 <th>Transaction Date</th>

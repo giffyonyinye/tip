@@ -5,6 +5,7 @@ import {useNavigate } from 'react-router';
 
 export default function Modal(props) {
   const [tipWallet, setTipWallet] = useState(false)
+  console.log(props)
   let message = "";
   let nextMessage = "";
   const navigate = useNavigate();
@@ -18,7 +19,9 @@ export default function Modal(props) {
   }
     return (
         <>
-          <div className="modal">
+        {
+          props.tipAmount && (
+            <div className="modal">
               <div className="modal-content">
                 <div className="modal-header">
                     <div className="modal-body">
@@ -48,10 +51,10 @@ export default function Modal(props) {
                           }
                         </p>
                         <p>
-                          {props.tipAmount === 0 &&
-                            <div>
+                          {props.tipAmount === -3 &&
+                            <div className="text-center">
                               <p className="text-success h3 text-center">{ message = "Transfer Successful!"}</p>
-                              {nextMessage = "You have to tip for this transaction due to insufficient funds"}
+                              {nextMessage = "You have no tip for this transaction due to insufficient funds"}
                             </div>
                           }
                         </p>
@@ -63,6 +66,9 @@ export default function Modal(props) {
                 </div>
               </div>
           </div>
+          )
+        }
+          
           
         </>
     )

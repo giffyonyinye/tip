@@ -9,32 +9,35 @@ export default function TipModal(props) {
     const dispatch = useDispatch();
     const walletStatus = useSelector((state) => state.walletDetails);
     const { walletDetails, error } = walletStatus;
-   
+   let message = "You have successfully enabled your wallet"
     const handleClick = () => {
         dispatch(tip(walletDetails.acctNumber, walletDetails.tipStatus, props.tipPercent));
         props.onClose();
+        navigate("/dashboard")
     }
-    useEffect(() => {
-        navigate("/tip-myself")
-    })
+    
   if(!props.showModal) {
     return null
   }
     return (
         <>
-          <div className="modal">
-              <div className="modal-content">
-                <div className="modal-header">
-                    <div className="modal-body">
-                        <p>You have succesfully enabled tip wallet</p>
-                    </div>
-                    <div className="modal-footer">
-                        <button onClick={handleClick}>OK</button>
-                    </div>
-                </div>
-
+        {props.walletDetails && (
+            <div className="modal">
+            <div className="modal-content">
+              <div className="modal-header">
+                  <div className="modal-body">
+                      <p>{message}</p>
+                  </div>
+                  
               </div>
-          </div>
+
+            </div>
+            <div className="text-center">
+                  <button  className="w-50 border-0"  onClick={handleClick} >OK</button>
+              </div>
+        </div>
+        )}
+          
         </>
     )
 }

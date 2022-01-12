@@ -3,7 +3,7 @@ import { getUser } from "./Action";
 import { TRANSFER_ACTION, TRANSFER_SUCCESS, TRANSFER_FAILED } from "../constants/userConstants";
 import { Navigate } from "react-router";
 
-const url = "https://tipproj.azurewebsites.net"
+const url = "https://localhost:5001"
 
 export const transfer = (acctNumber, receiver, amount, pin) => async (dispatch) => {
 
@@ -28,6 +28,7 @@ export const transfer = (acctNumber, receiver, amount, pin) => async (dispatch) 
             type: TRANSFER_SUCCESS,
             payload: data
         })
+        console.log(data)
         dispatch(getUser(acctNumber));
         Navigate("/dashboard")
 

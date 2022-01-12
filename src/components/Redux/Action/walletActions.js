@@ -14,7 +14,7 @@ import {
     WALLET_HISTORY_FAILED,
 } from '../constants/walletConstants';
 
-const url = "https://tipproj.azurewebsites.net"
+const url = "https://localhost:5001"
 
 export const toggleTip = (acctNumber, toggleStatus) => async (dispatch) => {
 

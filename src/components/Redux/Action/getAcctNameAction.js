@@ -5,7 +5,7 @@ import {
     GET_ACCOUNT_NAME_FAILED
 } 
 from "../constants/getAcctNameConstant";
-const url = "https://tipproj.azurewebsites.net"
+const url = "https://localhost:5001"
 
 export const getAccountName = (acctNumber) => async (dispatch) => {
 
@@ -19,7 +19,6 @@ export const getAccountName = (acctNumber) => async (dispatch) => {
                 'Content-type': 'application/json'
             }
         }
-        console.log(acctNumber)
         const { data } = await axios.get(
             `${url}/api/Users/UserDetails?acctNum=${acctNumber}`,
             config

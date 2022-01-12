@@ -4,8 +4,10 @@ import { tip, tipWalletDetails, toggleTip } from '../Redux/Action/walletActions'
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import TipHistory from './TipHistory';
+import TipModal from '../Layout/TipModal';
 
 export default function UserWallet() {
+    const [showModal, setShowModal] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const walletStatus = useSelector((state) => state.walletDetails);
@@ -23,7 +25,7 @@ export default function UserWallet() {
    
 
     const [form, setForm] = useState({
-        tipPercent: 0,
+        tipPercent: "",
         whenTipped: ""
     });
     const [falseStatus, setFalseStatus] = useState(false);
@@ -42,6 +44,7 @@ export default function UserWallet() {
     };
     const tipped = () => {
         dispatch(tip(walletDetails.acctNumber, walletDetails.tipStatus, form.tipPercent))
+        setShowModal(true)
     }
     
     const toggleFalse = () => {
@@ -70,6 +73,7 @@ export default function UserWallet() {
         "When I pay bills (electricity, TV subscription, etc.)"
     ]
     return (
+        <div>
         <div className="container d-flex ">
             <div className="w-50">
                 { !error && 
@@ -182,7 +186,6 @@ export default function UserWallet() {
                                             </button>
                                         </div>
                                     </div>
-
                                 }    
                         </div>
                     </div>
@@ -198,6 +201,18 @@ export default function UserWallet() {
                     <TipHistory/>
                     }
             </div>
+        </div>
+
+        <div>
+            {
+                showModal &&
+                <TipModal 
+                showModal = {() => setShowModal(true)} 
+                onClose = {() => setShowModal(false)} 
+                walletDetails={walletDetails.tipstatus}
+                />
+            }
+        </div>
         </div>
     )
 }
