@@ -174,8 +174,8 @@ export default function UserWallet() {
                                         <div>
                                             <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
                                                 <option  value="tip-percentage" >Tip Percentage</option>
-                                                {tipPercentage.map(p => (
-                                                    <option value={p}>{p}</option>
+                                                {tipPercentage.map((p, index) => (
+                                                    <option key={index} value={p}>{p}</option>
                                                 ))}
                                             </select>
                                             {percentValidity &&
@@ -187,8 +187,8 @@ export default function UserWallet() {
                                         <div>
                                             <select name="whenTipped" id="when-tipped" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange}>
                                                 <option  value="when-tipped" >When Should I be tipped</option>
-                                                {whenTipped.map(tip => (
-                                                    <option value={tip}>{tip}</option>
+                                                {whenTipped.map((tip, index) => (
+                                                    <option key={index} value={tip}>{tip}</option>
                                                 ))}
                                             </select>
                                             {whenTippedValidity &&

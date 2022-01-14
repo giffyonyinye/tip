@@ -6,7 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { transfer } from '../Redux/Action/transferAction';
 import Modal from '../Layout/Modal';
 import { getAccountName } from '../Redux/Action/getAcctNameAction';
+// import { toggleTip } from '../Redux/Action/walletActions';
 import logo from '../../assets/logo1.png';
+import ToggleTip from './ToggleTip';
 
 
 const Transfer = () => {
@@ -126,7 +128,7 @@ const Transfer = () => {
                                 </div>
                                 <div className="mt-2">
                                     <p className="m-0 "  style={{color:"#ab2656", fontWeight:"bold"}}>Description</p>
-                                    <input onChange={handleChange} type="text" name="desc" id="desc" placeholder="Description" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
+                                    <input onChange={handleChange} type="text" name="description" id="description" placeholder="Description" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                     {
                                         descValidity &&
                                         <p className="text-danger" style={{fontSize:".8rem"}}>This field cannot be empty</p>
@@ -134,12 +136,16 @@ const Transfer = () => {
                                 </div>
                                 <div className="mt-2">
                                     <p className="m-0"  style={{color:"#ab2656", fontWeight:"bold"}}>Pin</p>
-                                    <input onChange={handleChange} type="password" name="pin" id="pin" placeholder="Pin" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
+                                    <input onChange={handleChange} type="password" maxLength="4" name="pin" id="pin" placeholder="Pin" className="p-2 w-100 rounded" style={{border:"1px solid grey"}}/>
                                     {
                                         pinValidity &&
                                         <p className="text-danger" style={{fontSize:".8rem"}}>Enter Pin</p>
                                     }
                                 </div>
+                                <div className="mt-2">
+                                    <ToggleTip/>
+                                </div>
+                                
                                 <div>
                                     <p className="text-danger">{error}</p>
                                 </div>

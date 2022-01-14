@@ -39,7 +39,6 @@ const TipWallet = () => {
                     <UserWallet/>
                     
                 </div>
-                
             </div>  
         </>
     )
