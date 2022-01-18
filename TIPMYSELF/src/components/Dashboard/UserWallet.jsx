@@ -83,14 +83,14 @@ export default function UserWallet() {
     ]
     return (
         <div>
-        <div className="container d-flex ">
-            <div className="w-50">
+        <div className="container row">
+            <div className="col-md-6">
                 { !error && 
                     <div>
                         <div>
                         {userInfo && 
                             <div>
-                                <div className="balance-bg w-75 text-white mt-4 p-3 rounded">
+                                <div className="balance-bg col-md-9 text-white mt-4 p-3 rounded">
                                     <div className="text-center">
                                         <p className="m-0">Tip Balance</p>
                                         <p className="h1"><span style={{fontSize:"1.5rem"}}>₦</span> {walletDetails.walletBalance}</p>
@@ -132,7 +132,7 @@ export default function UserWallet() {
                         
                 </div>
 
-                <div className="bg-white w-75 p-3 rounded mt-2">
+                <div className="bg-white col-md-9 p-3 rounded mt-2">
                     <div>
                             <div>
                                 {
@@ -173,7 +173,7 @@ export default function UserWallet() {
                                     <div>
                                         <div>
                                             <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
-                                                <option  value="tip-percentage" >Tip Percentage</option>
+                                                <option  value="5" >Tip Percentage</option>
                                                 {tipPercentage.map((p, index) => (
                                                     <option key={index} value={p}>{p}</option>
                                                 ))}
@@ -212,7 +212,7 @@ export default function UserWallet() {
                 }
             
             </div>      
-            <div className="w-50">
+            <div className="col-md-6">
                 {
                     viewWalletHistory &&
                     <TipHistory/>

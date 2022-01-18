@@ -13,6 +13,7 @@ import sendMoneyLogo from '../../assets/send-money-logo.png';
 import tipLogo from '../../assets/Tip-logo.png';
 import payBills from '../../assets/PayBills.png';
 import DashboardModal from './DashboardModal';
+import { tipWalletDetails } from '../Redux/Action/walletActions';
 
 const Dashboard = () => {
     const userLogin = useSelector((state) => state.userLogin);
@@ -25,8 +26,9 @@ const Dashboard = () => {
            navigate("/")
         }
     }, [userInfo]);
-    
-    
+    useEffect(() => {
+        tipWalletDetails(userInfo.acctNumber);
+    }, [])
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
        
@@ -37,12 +39,12 @@ const Dashboard = () => {
             <Header/>
 
             <div className="container mt-4">
-                <div >
-                    <div className=" mb-5" style={{width:"40%"}}>
+                <div>
+                    <div className=" mb-5 col-lg-4 mt-5 " >
                         <div>
                             <UserBalance/>
                         </div>
-                        <div className=" mt-3 pb-5" style={{width:"80%", margin:"auto"}}>
+                        <div className=" mt-3 pb-5 row" style={{width:"80%", margin:"auto"}}>
                             <div className="d-flex justify-content-between text-center">
                                 <Link to="/transfer" className=" text-black text-decoration-none bg-white p-3 rounded" style={{height:"6rem", width:"45%", boxShadow:"6px 6px 6px grey"}}>
                                     <img className="mt-1" src={sendMoneyLogo} alt="logo" style={{width:"2rem", height:"2rem"}}/>

@@ -50,7 +50,7 @@ export default function CreateWallet() {
     }
     return (
         <div className="container">
-            <div className="w-50">
+            <div className="col-md-6">
                 <div>
                     {error && 
                     <div>
@@ -77,7 +77,7 @@ export default function CreateWallet() {
                                 <div>
                                     <div>
                                         <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
-                                            <option value="tip-percentage" >Tip Percentage</option>
+                                            <option value="5" >Tip Percentage</option>
                                             {tipPercentage.map(p => (
                                                 <option value={p}>{p}</option>
                                             ))}

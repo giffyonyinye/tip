@@ -51,7 +51,6 @@ export default function ToggleTip() {
                                 </div> 
                             </label>
                         </div>
-                        
                     )
                 }
             </div>

@@ -9,6 +9,7 @@ import { getAccountName } from '../Redux/Action/getAcctNameAction';
 // import { toggleTip } from '../Redux/Action/walletActions';
 import logo from '../../assets/logo1.png';
 import ToggleTip from './ToggleTip';
+import { tipWalletDetails } from '../Redux/Action/walletActions';
 
 
 const Transfer = () => {
@@ -30,7 +31,7 @@ const Transfer = () => {
            navigate("/")
         }
     }, [userInfo])
-
+   
     const [form, setForm] = useState({
         toAccount: "",
         amount: "",
@@ -78,14 +79,14 @@ const Transfer = () => {
             <div className="send-money-bg ">
                 <div className="d-flex justify-content-end">
                     <div>
-                        <img className="mx-5 mt-3" style={{width:"10rem", height:"3rem"}} src={logo} alt="logo" />
+                        <img className="mx-5 mt-3 " style={{width:"10rem", height:"3rem"}} src={logo} alt="logo" />
                     </div>
                 </div>
                    
                 <div className="container">
-                    <div className="w-50 ">
+                    <div className="col-md-6">
                     <div className="pt-1">
-                            <div className="d-flex" style={{cursor:"pointer"}}>
+                            <div className="d-flex mt-5" style={{cursor:"pointer"}}>
                                 <div onClick={goToPreviousPath}>
                                     <i className="fa fa-arrow-left text-white p-2 rounded-circle " style={{background:"#ab2656"}}></i>
                                 </div>

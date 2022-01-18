@@ -35,13 +35,16 @@ export default function TransactionHistory() {
     return (
         <div>
             <div className="transaction-bg">
-                <div className="d-flex" style={{paddingTop:"2rem"}}>
-                    <div >
-                        <i onClick={goToPreviousPath} className="fa fa-arrow-left bg-white mt-1 mx-5 rounded-circle p-2" style={{color:"#ab2656"}}></i>
-                    </div>
-                    <p className="text-white" style={{fontSize:"2rem"}}>Transaction History</p>
+                <div className="">
+                    <div className="d-flex" style={{paddingTop:"2rem"}}>
+                        <div >
+                            <i onClick={goToPreviousPath} className="fa fa-arrow-left bg-white mt-1 mx-2 rounded-circle p-2" style={{color:"#ab2656"}}></i>
+                        </div>
+                        <p className="text-white ps-3" style={{fontSize:"2rem"}}>Transaction History</p>
 
+                    </div>
                 </div>
+               
                 <div className="p-2 rounded mt-4" style={{overflow:"auto", width:"90%", margin:"auto", height:"80vh", background:"whitesmoke"}}>
                     <table className="table text-black w-full mt-2 " >
                         <thead>

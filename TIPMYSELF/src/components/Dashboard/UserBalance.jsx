@@ -13,8 +13,8 @@ const UserBalance = () => {
     }, [])
     return (
         <div>
-            <div className="balance-bg  text-white p-2 rounded"  style={{boxShadow:"6px 6px 6px grey"}}>
-                <div className="d-flex justify-content-between">
+            <div className="balance-bg  text-white p-2 rounded">
+                <div className="d-flex justify-content-between user-balance">
                     <div>
                         <p className="m-0">Current Balance</p>
                         <p className="h2"><span style={{fontSize:"1.5rem"}}>₦</span> {userInfo && userInfo.acctBalance.toLocaleString()}</p>

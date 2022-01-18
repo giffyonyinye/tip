@@ -1,7 +1,7 @@
 .dashboard {
     background-image: linear-gradient(rgba(0,0,0,.01), rgba(0,0,0,.01)), url('../../assets/TALAT-DASHBOARD-bg.svg');
     background-size: cover;
-    /* height:100vh; */
+    height:100vh;
     background-repeat: no-repeat;
 }
 
@@ -66,7 +66,7 @@
   
   .slider:before {
     position: absolute;
-    content: "ON";
+    content: "";
     font-size: .6rem;
     margin-top: .4rem;
     height: 20px;
@@ -117,7 +117,7 @@
   
   .slider2:before {
     position: absolute;
-    content: "OFF";
+    content: "";
     font-size: .6rem;
     margin-top: .4rem;
     height: 20px;
@@ -150,4 +150,10 @@
   
   .slider2.round:before {
     border-radius: 50%;
+  }
+
+  @media (max-width: 800px) {
+    .user-balance {
+      width: 100%;
+    }
   }
