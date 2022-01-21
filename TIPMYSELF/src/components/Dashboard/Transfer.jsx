@@ -25,12 +25,13 @@ const Transfer = () => {
     const { transferInfo,loading, error } = transferred;
     const getAcctName = useSelector((state) => state.accountName);
     const { accountName } = getAcctName;
-
+    
     useEffect(() => {
         if(!userInfo) {
            navigate("/")
         }
     }, [userInfo])
+   
    
     const [form, setForm] = useState({
         toAccount: "",
@@ -71,6 +72,7 @@ const Transfer = () => {
         } else {
             dispatch(transfer(userInfo.acctNumber, form.toAccount, form.amount, form.pin))
            !loading && setShowModal(true)
+           
         }     
     }
 

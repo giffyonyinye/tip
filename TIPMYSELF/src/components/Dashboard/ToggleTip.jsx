@@ -1,9 +1,12 @@
 import React from 'react';
 import { toggleTip } from '../Redux/Action/walletActions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { tipWalletDetails } from '../Redux/Action/walletActions';
 export default function ToggleTip() {
+    useEffect(() => {
+        dispatch(tipWalletDetails(userInfo.acctNumber));
+    }, []);
     const [falseStatus, setFalseStatus] = useState(false);
     const [trueStatus, setTrueStatus] = useState(true);
     const userLogin = useSelector((state) => state.userLogin);
@@ -11,6 +14,8 @@ export default function ToggleTip() {
     const walletStatus = useSelector((state) => state.walletDetails);
     const { walletDetails } = walletStatus;
     const dispatch = useDispatch();
+    
+   
     const toggleFalse = () => {
         dispatch(toggleTip(userInfo.acctNumber, falseStatus));
     }
@@ -18,6 +23,7 @@ export default function ToggleTip() {
     const toggleTrue = () => {
         dispatch(toggleTip(userInfo.acctNumber, trueStatus));
     }
+    
     return (
         <div>
             <div>

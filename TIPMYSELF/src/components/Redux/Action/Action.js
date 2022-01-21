@@ -48,7 +48,7 @@ export const createAccount = (firstName, lastName, email, password, pin) => asyn
             payload: data
         })
 
-        // localStorage.setItem('createAccount', JSON.stringify(data))
+        localStorage.setItem('userInfo', JSON.stringify(data))
 
     } catch (error) {
         let err = error.response.data.Message
