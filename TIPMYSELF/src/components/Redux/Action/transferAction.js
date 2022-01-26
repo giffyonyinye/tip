@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getUser } from "./Action";
 import { TRANSFER_ACTION, TRANSFER_SUCCESS, TRANSFER_FAILED } from "../constants/userConstants";
-
 const url = "https://tipproj.azurewebsites.net"
 
 export const transfer = (acctNumber, receiver, amount, pin) => async (dispatch) => {

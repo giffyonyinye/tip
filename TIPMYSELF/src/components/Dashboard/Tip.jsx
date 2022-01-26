@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router';
 import CreateWallet from './CreateWallet';
 import UserWallet from './UserWallet';
 import { getUser } from '../Redux/Action/Action';
+import { tipWalletDetails } from '../Redux/Action/walletActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const TipWallet = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    const walletStatus = useSelector((state) => state.walletDetails);
+    const { walletDetails, error } = walletStatus;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const goToPreviousPath = () => {
@@ -17,7 +20,11 @@ const TipWallet = () => {
     }
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
-    }, [])
+    }, []);
+    useEffect(() => {
+        dispatch(tipWalletDetails(userInfo.acctNumber));
+    }, []);
+    
     return (
         <>
           <div className="tip-bg">
@@ -35,8 +42,13 @@ const TipWallet = () => {
                 
                 <div >
                   
-                    <CreateWallet/>
+                  
+                  {walletDetails.tipPercent && 
                     <UserWallet/>
+                }
+                {!walletDetails.tipPercent && 
+                    <CreateWallet/>
+                  }
                     
                 </div>
             </div>  

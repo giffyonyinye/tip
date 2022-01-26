@@ -10,7 +10,6 @@ export default function TransactionHistory() {
     const { userInfo, error } = userLogin;
     const transaction = useSelector((state) => state.transaction);
     const { transactionInfo, loading } = transaction;
-    console.log(transactionInfo, error, loading)
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const goToPreviousPath = () => {
@@ -22,7 +21,6 @@ export default function TransactionHistory() {
         }
     }, [userInfo])
     useEffect(() => {
-        console.log(userInfo)
         if(userInfo) {
         dispatch(transaction_History(userInfo.acctNumber));
         }
@@ -65,7 +63,7 @@ export default function TransactionHistory() {
                         <tbody>
                             {transactionInfo.map((trans, index) => (
                                 <tr key={index}>
-                                    <td>{moment(trans.transactionDate).format("DD/MM/YY hh:mm")}</td>
+                                    <td>{moment(trans.transactionDate).format("DD/MM/YY LT")}</td>
                                     <td>{trans.transactionSourceAccount}</td>
                                     <td>{trans.transactionDestinationAccount}</td>
                                     <td>₦{trans.transactionAmount}</td>

@@ -27,7 +27,8 @@ export const getAccountName = (acctNumber) => async (dispatch) => {
             type: GET_ACCOUNT_NAME_SUCCESS,
             payload: data
         })
-
+        localStorage.setItem('accountName', JSON.stringify(data))
+        
     } catch (error) {
        let err = error.response.data.Message
         dispatch({

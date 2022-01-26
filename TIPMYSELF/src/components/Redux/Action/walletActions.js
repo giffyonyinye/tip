@@ -116,7 +116,6 @@ export const tipWalletDetails = (acctNumber) => async (dispatch) => {
 
 
     } catch (error) {
-        console.log(error)
         dispatch({
             type: TIP_WALLET_FAILED,
             payload: error.response && error.response.data
@@ -144,7 +143,6 @@ export const walletHistory = (acctNumber) => async (dispatch) => {
             `${url}/api/Transactions/WalletHistory?acctNumber=${acctNumber}`,
             config
         )
-            console.log(data)
         dispatch({
             type: WALLET_HISTORY_SUCCESS,
             payload: data

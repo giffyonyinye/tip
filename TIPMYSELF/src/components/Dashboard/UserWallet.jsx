@@ -85,7 +85,7 @@ export default function UserWallet() {
         <div>
         <div className="container row">
             <div className="col-md-6">
-                { !error && 
+               
                     <div>
                         <div>
                         {userInfo && 
@@ -93,7 +93,7 @@ export default function UserWallet() {
                                 <div className="balance-bg col-md-9 text-white mt-4 p-3 rounded">
                                     <div className="text-center">
                                         <p className="m-0">Tip Balance</p>
-                                        <p className="h1"><span style={{fontSize:"1.5rem"}}>₦</span> {walletDetails.walletBalance}</p>
+                                        <p className="h1"><span style={{fontSize:"1.5rem"}}>₦</span> {walletDetails && walletDetails.walletBalance.toLocaleString()}</p>
                                     </div>
                                     
                                     <div className="d-flex justify-content-between">
@@ -209,7 +209,7 @@ export default function UserWallet() {
                 </div>
             </div>
                     </div>
-                }
+                
             
             </div>      
             <div className="col-md-6">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TipModal from '../Layout/TipModal';
 import { tip } from '../Redux/Action/walletActions';
 import { getUser } from '../Redux/Action/Action';
-
+import { tipWalletDetails } from '../Redux/Action/walletActions';
 export default function CreateWallet() {
     const walletStatus = useSelector((state) => state.walletDetails);
     const { error } = walletStatus;
@@ -23,6 +23,9 @@ export default function CreateWallet() {
     useEffect(() => {
         dispatch(getUser(userInfo.acctNumber));
     }, [])
+    useEffect(() => {
+        dispatch(tipWalletDetails(userInfo.acctNumber));
+    }, []);
     
     const showWalletOptions = () => {
         setShowOptions(true);
@@ -52,7 +55,7 @@ export default function CreateWallet() {
         <div className="container">
             <div className="col-md-6">
                 <div>
-                    {error && 
+                    
                     <div>
                         <div>
                             <div className="text-white balance-bg  text-white mt-4 p-3 rounded p-4">
@@ -78,8 +81,8 @@ export default function CreateWallet() {
                                     <div>
                                         <select name="tipPercent" id="tip-percent" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange} >
                                             <option value="5" >Tip Percentage</option>
-                                            {tipPercentage.map(p => (
-                                                <option value={p}>{p}</option>
+                                            {tipPercentage.map((p,index) => (
+                                                <option key={index} value={p}>{p}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -87,8 +90,8 @@ export default function CreateWallet() {
                                     <div>
                                         <select name="whenTipped" id="when-tipped" className="p-2 mt-3 w-100 rounded" style={{color:"#ab2656", fontWeight:"bold"}} onChange={handleChange}>
                                             <option value="when-tipped" >When Should I be tipped</option>
-                                            {whenTipped.map(tip => (
-                                                <option value={tip}>{tip}</option>
+                                            {whenTipped.map((tip,index) => (
+                                                <option key={index} value={tip}>{tip}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -114,7 +117,7 @@ export default function CreateWallet() {
                         </div>
 
                     </div>
-                    }
+                    
                 </div>
             </div>
         </div>

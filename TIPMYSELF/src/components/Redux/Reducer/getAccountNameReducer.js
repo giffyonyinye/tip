@@ -1,4 +1,4 @@
-import { GET_ACCOUNT_NAME_ACTION, GET_ACCOUNT_NAME_SUCCESS, GET_ACCOUNT_NAME_FAILED } from "../constants/getAcctNameConstant";
+import { GET_ACCOUNT_NAME_ACTION, GET_ACCOUNT_NAME_SUCCESS, GET_ACCOUNT_NAME_FAILED} from "../constants/getAcctNameConstant";
 
 export const getAccountName = (state = {}, action) => {
     switch (action.type) {

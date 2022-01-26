@@ -9,8 +9,6 @@ const TipHistory = () => {
     const { userInfo } = userLogin;
     const history = useSelector((state) => state.tipHistory);
     const { tipHistory } = history;
-    const [emptyHistory, setEmptyHistory] = useState(false);
-
     
     const dispatch = useDispatch();
     
@@ -46,7 +44,7 @@ const TipHistory = () => {
                             }
                             {tipHistory.map((trans, index) => (
                                 <tr key={index}>
-                                    <td>{moment(trans.date).format("DD/MM/YY hh:mma")}</td>
+                                    <td>{moment(trans.date).format("DD/MM/YY LT")}</td>
                                     <td>₦{trans.transactionAmount}</td>
                                     <td>{trans.tipPercent}%</td>
                                     <td>₦{trans.tipAmount}</td>
